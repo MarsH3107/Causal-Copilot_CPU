@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 17,
+  "sample_result": {
+    "(intIssueWidth, DCacheMiss)": {
+      "result": "A",
+      "explanation": "Integer issue width determines how many integer instructions can be issued per cycle, and higher issue widths can generate more memory requests that may exceed cache capacity, leading to increased data cache misses;"
+    },
+    "(intIssueWidth, enablePrefetching)": {
+      "result": "C",
+      "explanation": "Integer issue width is a hardware execution parameter while prefetching enablement is a separate cache optimization feature that operates independently of instruction issue capabilities;"
+    },
+    "(intIssueWidth, nDCacheMSHRs)": {
+      "result": "C",
+      "explanation": "Integer issue width affects instruction throughput while the number of data cache Miss Status Holding Registers is a fixed hardware resource allocation that doesn't change based on issue width;"
+    }
+  }
+}

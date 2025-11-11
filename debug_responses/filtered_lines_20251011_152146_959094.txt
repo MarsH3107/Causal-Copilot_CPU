@@ -1,0 +1,3 @@
+Filtered lines (starting with '('): 1
+================================================================================
+1. (DCacheMiss, DCacheMiss): C: A variable cannot have a causal relationship with itself since causation requires distinct entities where one variable influences another, and DCacheMiss is the same measurement being compared to itself;

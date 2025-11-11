@@ -1,0 +1,10 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 1,
+  "sample_results": {
+    "(DCacheMiss, DCacheMiss)": {
+      "result": "C",
+      "explanation": "A variable cannot have a causal relationship with itself since causation requires distinct events where one influences another;"
+    }
+  }
+}

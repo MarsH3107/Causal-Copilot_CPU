@@ -1,0 +1,27 @@
+Filtered lines (starting with '('): 25
+================================================================================
+1. (fetchWidth, nL2TLBEntries): C: Fetch width determines how many instructions can be fetched per cycle, while L2 TLB entries affect address translation capacity - these are independent architectural parameters that don't directly influence each other;
+2. (fetchWidth, ICacheMiss): A: Higher fetch width can increase instruction cache pressure by requesting more instructions per cycle, potentially leading to more cache misses when the cache cannot satisfy the increased demand;
+3. (fetchWidth, numLdqEntries): C: Fetch width affects instruction fetching while load queue entries handle memory operations in the execution stage - these operate at different pipeline stages and don't directly influence each other;
+4. (fetchWidth, nDCacheWays): C: Fetch width controls instruction fetching rate while data cache associativity affects data access patterns - these are independent design parameters serving different functions;
+5. (fetchWidth, decodeWidth): A: Fetch width directly determines the maximum number of instructions available for decoding, as you cannot decode more instructions than you fetch per cycle;
+6. (fetchWidth, numRCQEntries): C: Fetch width affects instruction supply while request completion queue entries handle memory request completion - these operate independently in different parts of the processor;
+7. (fetchWidth, flush): B: Pipeline flushes can reduce the effective utilization of fetch width by invalidating fetched instructions, making fetch width less effective when flushes occur frequently;
+8. (fetchWidth, intIssueWidth): A: Fetch width determines the instruction supply rate which can influence how many integer instructions are available for issue, though the relationship is indirect through the pipeline;
+9. (fetchWidth, nICacheTLBWays): C: Fetch width affects instruction demand while instruction cache TLB associativity affects address translation efficiency - these are independent architectural parameters;
+10. (fetchWidth, maxBrCount): C: Fetch width determines instruction fetching capacity while maximum branch count affects branch prediction accuracy - these are independent design parameters;
+11. (fetchWidth, numRXQEntries): C: Fetch width affects instruction supply while request crossbar queue entries handle memory system communication - these operate independently;
+12. (fetchWidth, CPI): B: CPI (cycles per instruction) is a performance metric that can influence the effectiveness of fetch width, as higher CPI reduces the demand for instruction fetching;
+13. (fetchWidth, memIssueWidth): C: Fetch width affects instruction supply while memory issue width affects memory operation dispatch - these operate at different pipeline stages independently;
+14. (fetchWidth, nICacheWays): C: Fetch width determines instruction demand while instruction cache associativity affects cache hit rates - these are independent design parameters that don't directly cause each other;
+15. (fetchWidth, numRasEntries): C: Fetch width affects instruction fetching while return address stack entries affect return instruction prediction - these are independent architectural features;
+16. (fetchWidth, enableSFBOpt): C: Fetch width is a structural parameter while store-to-load forwarding optimization is a functional feature - these are independent design choices;
+17. (fetchWidth, nDCacheTLBWays): C: Fetch width affects instruction fetching while data cache TLB associativity affects data address translation - these serve different functions independently;
+18. (fetchWidth, numIntPhysRegisters): C: Fetch width affects instruction supply rate while the number of integer physical registers affects register renaming capacity - these are independent architectural parameters;
+19. (fetchWidth, nL2TLBWays): C: Fetch width determines instruction fetching capacity while L2 TLB associativity affects address translation efficiency - these are independent design parameters;
+20. (fetchWidth, DCacheMiss): A: Higher fetch width can indirectly increase data cache misses by enabling more instructions to execute per cycle, potentially increasing memory access pressure;
+21. (fetchWidth, numFetchBufferEntries): A: Fetch width determines how many instructions are fetched per cycle, which directly affects the utilization and required capacity of fetch buffer entries;
+22. (fetchWidth, enablePrefetching): C: Fetch width is a structural parameter determining instruction supply while prefetching is a functional optimization technique - these are independent design features;
+23. (fetchWidth, nDCacheMSHRs): C: Fetch width affects instruction supply while data cache miss status holding registers handle outstanding memory requests - these operate independently;
+24. (fetchWidth, numRobEntries): A: Higher fetch width increases the instruction supply rate, which can increase the demand for reorder buffer entries to track more in-flight instructions;
+25. (fetchWidth, fetchWidth): C: A variable cannot cause itself as this would be a logical contradiction

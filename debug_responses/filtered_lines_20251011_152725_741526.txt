@@ -1,0 +1,9 @@
+Filtered lines (starting with '('): 7
+================================================================================
+1. (nDCacheWays, CPI): A: Increasing the number of data cache ways reduces cache miss rates by providing more storage locations for conflicting memory addresses, which directly improves processor performance by reducing the cycles per instruction;
+2. (nDCacheWays, nDCacheTLBWays): C: The number of data cache ways and the number of data cache TLB ways are independent architectural design parameters that can be configured separately without one directly influencing the other;
+3. (nDCacheWays, DCacheMiss): A: Higher data cache associativity directly reduces the probability of cache misses by providing more ways to store conflicting memory blocks, thereby decreasing the overall miss rate;
+4. (nDCacheWays, nDCacheMSHRs): C: The number of cache ways and the number of Miss Status Holding Registers are independent architectural parameters that serve different functions in the memory hierarchy design;
+5. (nDCacheWays, ICacheMiss): C: Data cache associativity configuration has no direct impact on instruction cache miss behavior since these are separate cache structures serving different memory access patterns;
+6. (nDCacheWays, nDCacheWays): C: A variable cannot have a causal relationship with itself as this would represent a self-reference rather than a meaningful causal interaction;
+7. (nDCacheWays, flush): C: The number of data cache ways does not directly cause pipeline flushes, as flushes are typically triggered by control flow changes or hazards rather than cache configuration parameters

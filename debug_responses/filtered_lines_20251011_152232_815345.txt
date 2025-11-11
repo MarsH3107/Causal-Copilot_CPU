@@ -1,0 +1,10 @@
+Filtered lines (starting with '('): 8
+================================================================================
+1. (nICacheTLBWays, nDCacheTLBWays): C: The number of ways in the instruction cache TLB and data cache TLB are independent design parameters that do not directly influence each other, as they serve different cache subsystems;
+2. (nICacheTLBWays, DCacheMiss): C: The associativity of the instruction cache TLB does not directly affect data cache miss rates since they operate on different memory access patterns and address translation paths;
+3. (nICacheTLBWays, nDCacheMSHRs): C: The number of ways in the instruction cache TLB and the number of data cache miss status holding registers are independent architectural parameters serving different functions in the memory hierarchy;
+4. (nICacheTLBWays, ICacheMiss): A: Increasing the associativity of the instruction cache TLB reduces TLB miss rates, which in turn can reduce instruction cache misses by improving address translation efficiency for instruction fetches;
+5. (nICacheTLBWays, nDCacheWays): C: The associativity of the instruction cache TLB and the associativity of the data cache are independent design parameters that do not directly influence each other;
+6. (nICacheTLBWays, flush): C: The number of ways in the instruction cache TLB does not directly cause pipeline flushes, as flushes are typically triggered by control flow changes or hazards rather than TLB configuration;
+7. (nICacheTLBWays, nICacheTLBWays): C: A variable cannot have a causal relationship with itself;
+8. (nICacheTLBWays, CPI): A: Higher associativity in the instruction cache TLB reduces TLB miss penalties and improves instruction fetch efficiency, which can lead to lower cycles per instruction by reducing memory access latency;

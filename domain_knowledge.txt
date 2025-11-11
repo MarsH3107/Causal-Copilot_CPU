@@ -1,0 +1,44 @@
+Use PC algorithm for causal discovery. CAUSAL STRUCTURE DEFINITION FOR CPU DESIGN SPACE EXPLORATION
+
+=== THREE-TIER HIERARCHICAL CONSTRAINT ===
+
+TIER 0 - Exogenous Microarchitectural Parameters (22 variables)
+BranchPredictor, fetchWidth, numFetchBufferEntries, numRasEntries, maxBrCount, decodeWidth, numRobEntries, numIntPhysRegisters, memIssueWidth, intIssueWidth, numLdqEntries, enablePrefetching, enableSFBOpt, numRXQEntries, numRCQEntries, nL2TLBEntries, nL2TLBWays, nICacheWays, nICacheTLBWays, nDCacheWays, nDCacheMSHRs, nDCacheTLBWays.
+
+These are design-time configurable parameters. They act ONLY as causes (parent nodes), NEVER as effects. They have NO causal relationships among themselves.
+
+TIER 1 - Endogenous Intermediate Mechanisms (11 variables)
+power_leakage, power_internal, power_switching, power_memory, power_register, power_logic, power_clock, power_pad, area_cell_count, area_cell_area, area_net_area.
+
+These are independent measurement metrics. CRITICAL - They are INDEPENDENTLY measured components that do NOT cause each other. Each is directly determined by Tier 0 parameters. They have NO causal relationships among themselves. They only aggregate into Tier 2 final metrics.
+
+TIER 2 - Final Performance Metrics (4 variables)
+cpi, power, area, time.
+
+These are aggregated outcomes that act ONLY as effects (leaf nodes), NEVER as causes. They are computed by summing or aggregating Tier 1 components.
+
+=== CRITICAL CAUSAL CONSTRAINTS ===
+
+1. FORBIDDEN DIRECTIONS (prevent reverse causality)
+   - Tier 1 to Tier 0 - Intermediate metrics CANNOT cause design parameters
+   - Tier 2 to Tier 0 - Performance metrics CANNOT cause design parameters
+   - Tier 2 to Tier 1 - Performance metrics CANNOT cause intermediate metrics
+
+2. FORBIDDEN WITHIN-TIER (prevent spurious correlations)
+   - No edges between ANY Tier 0 variables (parameters are independently configured)
+   - No edges between ANY Tier 1 variables (they are independently measured components - power_register cannot cause power_clock, area_cell_count cannot cause area_net_area, etc.)
+   - No edges between ANY Tier 2 variables (outcomes are independent metrics)
+
+3. REQUIRED DIRECTIONS (enforce physical causality)
+   - Tier 0 to Tier 1 - Design parameters MUST influence intermediate components
+   - Tier 1 to Tier 2 - Intermediate components MUST aggregate into final metrics
+   - Specifically, power components (power_*) should aggregate into power metric
+   - Specifically, area components (area_*) should aggregate into area metric
+
+4. DOMAIN KNOWLEDGE
+   - Power is the sum of power_leakage, power_internal, power_switching, power_memory, power_register, power_logic, power_clock, power_pad
+   - Area is the sum of area_cell_area and area_net_area (area_cell_count is a count metric)
+   - CPI and time are performance metrics determined by microarchitectural behaviors
+
+=== OBJECTIVE ===
+Discover ONLY the causal pathways from Tier 0 (design parameters) directly to Tier 1 (independent components) directly to Tier 2 (aggregated outcomes). The structure must be strictly hierarchical with no edges within any tier.

@@ -1,0 +1,14 @@
+Filtered lines (starting with '('): 12
+================================================================================
+1. (numRCQEntries, nL2TLBEntries): C: These are independent architectural parameters where the number of cache coherency queue entries does not directly influence the number of L2 TLB entries, as they serve different functions in the memory hierarchy;
+2. (numRCQEntries, ICacheMiss): C: The number of cache coherency queue entries is independent of instruction cache miss rates, as RCQ handles cache coherency operations while instruction cache misses are determined by program behavior and cache configuration;
+3. (numRCQEntries, nDCacheWays): C: These are independent design parameters where the number of cache coherency queue entries does not influence the associativity configuration of the data cache;
+4. (numRCQEntries, numRCQEntries): D: This appears to be a self-relationship which doesn't make logical sense in causal analysis;
+5. (numRCQEntries, flush): C: The number of cache coherency queue entries is a static architectural parameter that does not directly cause pipeline flush events, which are typically triggered by control hazards or exceptions;
+6. (numRCQEntries, nICacheTLBWays): C: These are independent architectural design choices where the cache coherency queue size does not influence the associativity of the instruction cache TLB;
+7. (numRCQEntries, CPI): C: While RCQ size might indirectly affect performance through cache coherency efficiency, there is no direct causal relationship between the number of RCQ entries and cycles per instruction;
+8. (numRCQEntries, nICacheWays): C: The number of cache coherency queue entries and instruction cache associativity are independent design parameters that do not directly influence each other;
+9. (numRCQEntries, nDCacheTLBWays): C: These represent independent architectural configurations where cache coherency queue size does not directly determine data cache TLB associativity;
+10. (numRCQEntries, nL2TLBWays): C: The cache coherency queue size and L2 TLB associativity are independent design parameters that serve different functions in the memory subsystem;
+11. (numRCQEntries, DCacheMiss): C: The number of cache coherency queue entries does not directly cause data cache misses, as cache misses are primarily determined by program memory access patterns and cache configuration;
+12. (numRCQEntries, nDCacheMSHRs): C: These are independent architectural parameters where the cache coherency queue size does not directly influence the number of miss status holding registers in the data cache

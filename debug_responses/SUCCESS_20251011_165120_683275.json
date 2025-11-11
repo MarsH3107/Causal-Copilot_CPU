@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 7,
+  "sample_results": {
+    "(nDCacheWays, CPI)": {
+      "result": "A",
+      "explanation": "Increasing the number of data cache ways reduces cache conflicts and miss rates, which decreases memory access latency and directly improves cycles per instruction performance;"
+    },
+    "(nDCacheWays, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "The number of data cache ways and the number of data cache TLB ways are independent architectural parameters that can be configured separately without one directly causing changes in the other;"
+    },
+    "(nDCacheWays, DCacheMiss)": {
+      "result": "A",
+      "explanation": "Increasing the number of data cache ways reduces cache conflicts by providing more placement options for memory blocks, which directly decreases the data cache miss rate;"
+    }
+  }
+}

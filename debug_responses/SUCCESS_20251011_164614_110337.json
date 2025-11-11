@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 18,
+  "sample_results": {
+    "(memIssueWidth, intIssueWidth)": {
+      "result": "C",
+      "explanation": "Memory issue width and integer issue width are independent processor design parameters that control different execution units and do not directly influence each other;"
+    },
+    "(memIssueWidth, nICacheTLBWays)": {
+      "result": "C",
+      "explanation": "Memory issue width affects memory operation throughput while instruction cache TLB ways determine address translation capacity, representing independent architectural parameters;"
+    },
+    "(memIssueWidth, numRXQEntries)": {
+      "result": "C",
+      "explanation": "Memory issue width controls memory operation dispatch rate while RXQ entries manage network packet reception, representing independent system components;"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+Filtered lines (starting with '('): 3
+================================================================================
+1. (flush, DCacheMiss): B: Data cache misses cause pipeline flushes because when the processor cannot retrieve required data from the cache, it must stall the pipeline and potentially flush instructions that depend on that data;
+2. (flush, ICacheMiss): B: Instruction cache misses cause pipeline flushes because when the processor cannot fetch the next instruction from the cache, it must stall and flush the pipeline until the instruction is retrieved from memory;
+3. (flush, flush): C: A variable cannot have a causal relationship with itself as they represent the same measurement

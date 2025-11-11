@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 12,
+  "sample_result": {
+    "(numRCQEntries, nL2TLBEntries)": {
+      "result": "C",
+      "explanation": "These are independent architectural parameters where the number of cache coherency queue entries does not directly influence the number of L2 TLB entries, as they serve different functions in the memory hierarchy;"
+    },
+    "(numRCQEntries, ICacheMiss)": {
+      "result": "C",
+      "explanation": "The number of cache coherency queue entries is independent of instruction cache miss rates, as RCQ handles cache coherency operations while instruction cache misses are determined by program behavior and cache configuration;"
+    },
+    "(numRCQEntries, nDCacheWays)": {
+      "result": "C",
+      "explanation": "These are independent design parameters where the number of cache coherency queue entries does not influence the associativity configuration of the data cache;"
+    }
+  }
+}

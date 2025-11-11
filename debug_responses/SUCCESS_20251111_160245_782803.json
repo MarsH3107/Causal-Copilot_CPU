@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 14,
+  "sample_results": {
+    "(power, power_leakage)": {
+      "result": "B",
+      "explanation": "Power leakage is a fundamental component that directly contributes to the total power consumption of a processor;"
+    },
+    "(power, area_cell_area)": {
+      "result": "B",
+      "explanation": "The physical area occupied by cells in a processor design directly influences the total power consumption through increased transistor count and switching activity;"
+    },
+    "(power, power_register)": {
+      "result": "B",
+      "explanation": "Register power consumption is a direct component that contributes to the overall power consumption of the processor;"
+    }
+  }
+}

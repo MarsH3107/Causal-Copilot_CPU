@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 11,
+  "sample_results": {
+    "(nL2TLBEntries, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "These are independent architectural parameters that configure different components of the memory hierarchy and do not directly influence each other;"
+    },
+    "(nL2TLBEntries, nL2TLBWays)": {
+      "result": "C",
+      "explanation": "Both are independent configuration parameters of the same L2 TLB structure, where the number of entries and associativity are set independently during design;"
+    },
+    "(nL2TLBEntries, DCacheMiss)": {
+      "result": "A",
+      "explanation": "A larger L2 TLB with more entries can store more virtual-to-physical address translations, reducing TLB misses and subsequently reducing data cache misses caused by TLB miss penalties;"
+    }
+  }
+}

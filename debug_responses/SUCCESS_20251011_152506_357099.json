@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 10,
+  "sample_result": {
+    "(nL2TLBWays, nICacheTLBWays)": {
+      "result": "C",
+      "explanation": "These are independent architectural parameters that configure different TLB structures (L2 TLB and instruction cache TLB) and do not directly influence each other's design choices;"
+    },
+    "(nL2TLBWays, CPI)": {
+      "result": "A",
+      "explanation": "Increasing the number of L2 TLB ways reduces TLB miss rates by improving address translation hit probability, which directly reduces memory access latency and decreases cycles per instruction;"
+    },
+    "(nL2TLBWays, nICacheWays)": {
+      "result": "C",
+      "explanation": "The number of L2 TLB ways and instruction cache ways are independent architectural design parameters that configure different cache structures without direct causal relationship;"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 16,
+  "sample_results": {
+    "(numLdqEntries, CPI)": {
+      "result": "A",
+      "explanation": "Increasing the number of load queue entries allows more load instructions to be tracked simultaneously, reducing pipeline stalls and improving instruction throughput, which directly decreases cycles per instruction;"
+    },
+    "(numLdqEntries, nICacheWays)": {
+      "result": "C",
+      "explanation": "The number of load queue entries and instruction cache associativity are independent architectural parameters that operate in different pipeline stages and do not directly influence each other;"
+    },
+    "(numLdqEntries, enableSFBOpt)": {
+      "result": "C",
+      "explanation": "Load queue size and store-to-load forwarding optimization are independent features that can be configured separately without direct causal relationship;"
+    }
+  }
+}

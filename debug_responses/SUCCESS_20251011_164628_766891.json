@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 26,
+  "sample_results": {
+    "(BranchPredictor, decodeWidth)": {
+      "result": "C",
+      "explanation": "Branch predictor accuracy and decode width are independent architectural parameters that operate at different pipeline stages without direct causal influence;"
+    },
+    "(BranchPredictor, numRCQEntries)": {
+      "result": "C",
+      "explanation": "Branch predictor mechanisms and the number of request completion queue entries are independent design parameters serving different processor functions;"
+    },
+    "(BranchPredictor, flush)": {
+      "result": "A",
+      "explanation": "Branch mispredictions directly cause pipeline flushes as the processor must discard incorrectly fetched and decoded instructions when the actual branch outcome differs from the prediction;"
+    }
+  }
+}

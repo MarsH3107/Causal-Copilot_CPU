@@ -1,0 +1,13 @@
+Filtered lines (starting with '('): 11
+================================================================================
+1. (nL2TLBEntries, nDCacheTLBWays): C: These are independent architectural design parameters where the number of L2 TLB entries and the associativity of data cache TLB are separate configuration choices that don't directly influence each other;
+2. (nL2TLBEntries, nL2TLBWays): C: Both parameters configure different aspects of the same L2 TLB structure but are independent design choices where entry count and associativity are set separately without direct causal relationship;
+3. (nL2TLBEntries, DCacheMiss): A: Increasing L2 TLB entries reduces translation misses which can indirectly affect data cache performance by reducing the overhead of address translation during memory accesses;
+4. (nL2TLBEntries, nDCacheMSHRs): C: The number of L2 TLB entries and the number of data cache miss status holding registers are independent architectural parameters that serve different functions in the memory hierarchy;
+5. (nL2TLBEntries, nL2TLBEntries): C: A variable cannot have a causal relationship with itself as this would be a self-referential relationship;
+6. (nL2TLBEntries, ICacheMiss): C: L2 TLB entries primarily affect data address translation and have minimal direct impact on instruction cache miss rates which depend on instruction access patterns;
+7. (nL2TLBEntries, nDCacheWays): C: The number of L2 TLB entries and data cache associativity are independent design parameters that configure different aspects of the memory hierarchy without direct causal influence;
+8. (nL2TLBEntries, flush): C: L2 TLB entry count is a static architectural parameter that doesn't directly cause pipeline flushes, which are typically triggered by control flow changes or hazards;
+9. (nL2TLBEntries, nICacheTLBWays): C: These configure different TLB structures (L2 TLB entries vs instruction cache TLB associativity) and are independent design choices without direct causal relationship;
+10. (nL2TLBEntries, CPI): A: Increasing L2 TLB entries can reduce translation miss penalties and improve overall instruction throughput, potentially leading to lower cycles per instruction;
+11. (nL2TLBEntries, nICacheWays): C: L2 TLB entry count and instruction cache associativity are independent architectural parameters that configure different components of the memory hierarchy without direct causal influence;

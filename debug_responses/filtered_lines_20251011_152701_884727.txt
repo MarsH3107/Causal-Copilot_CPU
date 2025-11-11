@@ -1,0 +1,24 @@
+Filtered lines (starting with '('): 22
+================================================================================
+1. (maxBrCount, DCacheMiss): C: maxBrCount controls branch prediction capacity while DCacheMiss relates to data cache performance, and these operate in different pipeline stages with no direct causal relationship;
+2. (maxBrCount, enablePrefetching): C: maxBrCount is a branch predictor configuration parameter while enablePrefetching is a memory subsystem feature, operating independently in different processor components;
+3. (maxBrCount, nDCacheMSHRs): C: maxBrCount affects branch prediction while nDCacheMSHRs determines data cache miss handling capacity, representing independent architectural parameters;
+4. (maxBrCount, numRobEntries): C: maxBrCount configures branch prediction capacity while numRobEntries sets reorder buffer size, both being independent microarchitectural sizing parameters;
+5. (maxBrCount, nL2TLBEntries): C: maxBrCount controls branch predictor capacity while nL2TLBEntries determines L2 TLB size, representing independent memory hierarchy and control flow components;
+6. (maxBrCount, ICacheMiss): C: maxBrCount affects branch prediction accuracy while ICacheMiss relates to instruction cache performance, operating in different aspects of the fetch stage;
+7. (maxBrCount, numLdqEntries): C: maxBrCount configures branch prediction while numLdqEntries sets load queue capacity, representing independent frontend and backend processor parameters;
+8. (maxBrCount, nDCacheWays): C: maxBrCount controls branch predictor capacity while nDCacheWays determines data cache associativity, operating in independent processor subsystems;
+9. (maxBrCount, decodeWidth): C: maxBrCount affects branch prediction capacity while decodeWidth determines instruction decode bandwidth, both being independent pipeline configuration parameters;
+10. (maxBrCount, numRCQEntries): C: maxBrCount controls branch prediction while numRCQEntries sets request completion queue size, representing independent frontend and memory subsystem parameters;
+11. (maxBrCount, intIssueWidth): C: maxBrCount configures branch prediction capacity while intIssueWidth determines integer execution bandwidth, operating in independent pipeline stages;
+12. (maxBrCount, flush): A: maxBrCount directly affects branch prediction accuracy, and poor branch prediction due to insufficient capacity leads to more pipeline flushes when mispredictions occur;
+13. (maxBrCount, nICacheTLBWays): C: maxBrCount controls branch predictor capacity while nICacheTLBWays determines instruction cache TLB associativity, representing independent frontend components;
+14. (maxBrCount, maxBrCount): C: A variable cannot have a causal relationship with itself as this would represent a logical impossibility;
+15. (maxBrCount, numRXQEntries): C: maxBrCount affects branch prediction while numRXQEntries controls receive queue capacity, operating in independent processor and memory subsystems;
+16. (maxBrCount, CPI): A: maxBrCount directly influences branch prediction accuracy, and insufficient branch prediction capacity leads to more mispredictions and pipeline stalls, increasing cycles per instruction;
+17. (maxBrCount, memIssueWidth): C: maxBrCount configures branch prediction capacity while memIssueWidth determines memory operation bandwidth, representing independent frontend and backend parameters;
+18. (maxBrCount, nICacheWays): C: maxBrCount controls branch predictor capacity while nICacheWays sets instruction cache associativity, both being independent frontend configuration parameters;
+19. (maxBrCount, enableSFBOpt): C: maxBrCount affects branch prediction capacity while enableSFBOpt controls store-to-load forwarding optimization, operating in independent processor components;
+20. (maxBrCount, nDCacheTLBWays): C: maxBrCount configures branch prediction while nDCacheTLBWays determines data cache TLB associativity, representing independent control flow and memory hierarchy components;
+21. (maxBrCount, numIntPhysRegisters): C: maxBrCount controls branch predictor capacity while numIntPhysRegisters sets integer register file size, both being independent microarchitectural sizing parameters;
+22. (maxBrCount, nL2TLBWays): C: maxBrCount affects branch prediction capacity while nL2TLBWays determines L2 TLB associativity, operating in independent control flow and memory translation components

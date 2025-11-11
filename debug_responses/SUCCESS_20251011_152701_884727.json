@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 22,
+  "sample_result": {
+    "(maxBrCount, DCacheMiss)": {
+      "result": "C",
+      "explanation": "maxBrCount controls branch prediction capacity while DCacheMiss relates to data cache performance, and these operate in different pipeline stages with no direct causal relationship;"
+    },
+    "(maxBrCount, enablePrefetching)": {
+      "result": "C",
+      "explanation": "maxBrCount is a branch predictor configuration parameter while enablePrefetching is a memory subsystem feature, operating independently in different processor components;"
+    },
+    "(maxBrCount, nDCacheMSHRs)": {
+      "result": "C",
+      "explanation": "maxBrCount affects branch prediction while nDCacheMSHRs determines data cache miss handling capacity, representing independent architectural parameters;"
+    }
+  }
+}

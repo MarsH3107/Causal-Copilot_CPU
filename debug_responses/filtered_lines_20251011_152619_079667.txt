@@ -1,0 +1,16 @@
+Filtered lines (starting with '('): 14
+================================================================================
+1. (enableSFBOpt, DCacheMiss): A: EnableSFBOpt reduces data cache misses by allowing store-to-load forwarding, bypassing the need to access the data cache for certain memory operations;
+2. (enableSFBOpt, nDCacheMSHRs): C: The number of data cache Miss Status Holding Registers is a fixed hardware configuration parameter that is independent of whether store-to-load forwarding optimization is enabled;
+3. (enableSFBOpt, nL2TLBEntries): C: The number of L2 Translation Lookaside Buffer entries is a fixed hardware configuration that operates independently of store-to-load forwarding optimizations;
+4. (enableSFBOpt, ICacheMiss): C: Store-to-load forwarding optimization affects data memory operations and has no direct impact on instruction cache miss behavior;
+5. (enableSFBOpt, nDCacheWays): C: The number of data cache ways is a fixed hardware configuration parameter that remains constant regardless of whether store-to-load forwarding is enabled;
+6. (enableSFBOpt, numRCQEntries): C: The number of Request Completion Queue entries is a fixed hardware resource allocation that operates independently of store-to-load forwarding optimizations;
+7. (enableSFBOpt, flush): A: EnableSFBOpt can reduce pipeline flushes by eliminating memory ordering violations that would otherwise require pipeline restarts when stores forward directly to loads;
+8. (enableSFBOpt, nICacheTLBWays): C: The number of instruction cache TLB ways is a fixed hardware configuration that has no relationship with data memory store-to-load forwarding optimizations;
+9. (enableSFBOpt, numRXQEntries): C: The number of Request Queue entries is a fixed hardware buffer size that operates independently of store-to-load forwarding mechanisms;
+10. (enableSFBOpt, CPI): A: EnableSFBOpt reduces cycles per instruction by eliminating memory access latencies through direct store-to-load forwarding, improving overall execution efficiency;
+11. (enableSFBOpt, nICacheWays): C: The number of instruction cache ways is a fixed hardware configuration that has no direct relationship with data memory forwarding optimizations;
+12. (enableSFBOpt, enableSFBOpt): D: A variable cannot have a causal relationship with itself as this would represent a logical contradiction;
+13. (enableSFBOpt, nDCacheTLBWays): C: The number of data cache TLB ways is a fixed hardware configuration parameter that remains constant regardless of store-to-load forwarding settings;
+14. (enableSFBOpt, nL2TLBWays): C: The number of L2 TLB ways is a fixed hardware configuration that operates independently of store-to-load forwarding optimizations

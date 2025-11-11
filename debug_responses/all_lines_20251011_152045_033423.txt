@@ -1,0 +1,41 @@
+Total lines: 39
+================================================================================
+Line   1 | Starts with '(': False | Looking at each relationship systematically:
+Line   2 | Starts with '(': False | 
+Line   3 | Starts with '(': True  | (numIntPhysRegisters, nICacheWays): C: The number of integer physical registers in the processor core and the associativity of the instruction cache are independent architectural parameters that serve different functions and do not directly influence each other;
+Line   4 | Starts with '(': False | 
+Line   5 | Starts with '(': True  | (numIntPhysRegisters, enableSFBOpt): C: The number of integer physical registers and the store-forwarding bypass optimization are independent features that operate in different parts of the processor pipeline without direct causal relationship;
+Line   6 | Starts with '(': False | 
+Line   7 | Starts with '(': True  | (numIntPhysRegisters, nDCacheTLBWays): C: Integer physical registers are part of the execution core while data cache TLB associativity is a memory subsystem parameter, making them independent architectural choices;
+Line   8 | Starts with '(': False | 
+Line   9 | Starts with '(': True  | (numIntPhysRegisters, numIntPhysRegisters): C: A variable cannot have a causal relationship with itself as this would be a trivial identity relationship;
+Line  10 | Starts with '(': False | 
+Line  11 | Starts with '(': True  | (numIntPhysRegisters, nL2TLBWays): C: The number of integer registers in the core and the associativity of the L2 TLB are independent design parameters serving different processor subsystems;
+Line  12 | Starts with '(': False | 
+Line  13 | Starts with '(': True  | (numIntPhysRegisters, enablePrefetching): C: Integer physical registers are used for instruction execution while prefetching is a memory optimization technique, making them independent architectural features;
+Line  14 | Starts with '(': False | 
+Line  15 | Starts with '(': True  | (numIntPhysRegisters, DCacheMiss): A: Having more integer physical registers can reduce pipeline stalls and improve instruction scheduling, potentially leading to better memory access patterns and fewer data cache misses;
+Line  16 | Starts with '(': False | 
+Line  17 | Starts with '(': True  | (numIntPhysRegisters, nDCacheMSHRs): C: The number of integer registers and the number of miss status holding registers are independent parameters designed for different aspects of processor operation;
+Line  18 | Starts with '(': False | 
+Line  19 | Starts with '(': True  | (numIntPhysRegisters, nL2TLBEntries): C: Integer physical registers and L2 TLB entries serve completely different functions in the processor and are independent architectural parameters;
+Line  20 | Starts with '(': False | 
+Line  21 | Starts with '(': True  | (numIntPhysRegisters, ICacheMiss): A: More integer physical registers can improve instruction scheduling and reduce pipeline stalls, potentially leading to better instruction fetch patterns and fewer instruction cache misses;
+Line  22 | Starts with '(': False | 
+Line  23 | Starts with '(': True  | (numIntPhysRegisters, numLdqEntries): C: The number of integer registers and load queue entries are independent parameters that serve different parts of the processor pipeline without direct causal influence;
+Line  24 | Starts with '(': False | 
+Line  25 | Starts with '(': True  | (numIntPhysRegisters, nDCacheWays): C: Integer physical registers and data cache associativity are independent architectural parameters that serve different processor subsystems;
+Line  26 | Starts with '(': False | 
+Line  27 | Starts with '(': True  | (numIntPhysRegisters, numRCQEntries): C: The number of integer registers and request completion queue entries are independent design parameters serving different aspects of processor operation;
+Line  28 | Starts with '(': False | 
+Line  29 | Starts with '(': True  | (numIntPhysRegisters, flush): A: Having more integer physical registers can reduce register pressure and pipeline stalls, potentially decreasing the frequency of pipeline flushes due to resource conflicts;
+Line  30 | Starts with '(': False | 
+Line  31 | Starts with '(': True  | (numIntPhysRegisters, intIssueWidth): C: The number of integer physical registers and integer issue width are independent architectural parameters that can be designed separately;
+Line  32 | Starts with '(': False | 
+Line  33 | Starts with '(': True  | (numIntPhysRegisters, nICacheTLBWays): C: Integer physical registers and instruction cache TLB associativity are independent parameters serving different processor subsystems;
+Line  34 | Starts with '(': False | 
+Line  35 | Starts with '(': True  | (numIntPhysRegisters, numRXQEntries): C: The number of integer registers and request transmit queue entries are independent design parameters without direct causal relationship;
+Line  36 | Starts with '(': False | 
+Line  37 | Starts with '(': True  | (numIntPhysRegisters, CPI): A: Having more integer physical registers reduces register pressure and pipeline stalls, leading to better instruction throughput and lower cycles per instruction;
+Line  38 | Starts with '(': False | 
+Line  39 | Starts with '(': True  | (numIntPhysRegisters, memIssueWidth): C: The number of integer physical registers and memory issue width are independent architectural parameters that can be designed separately without direct causal influence

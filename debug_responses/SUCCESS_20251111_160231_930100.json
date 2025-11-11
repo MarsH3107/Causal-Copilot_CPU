@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 17,
+  "sample_results": {
+    "(nDCacheMSHRs, area_cell_area)": {
+      "result": "A",
+      "explanation": "Increasing the number of data cache MSHRs requires additional hardware structures, directly increasing the physical cell area needed for implementation;"
+    },
+    "(nDCacheMSHRs, nDCacheMSHRs)": {
+      "result": "C",
+      "explanation": "A variable cannot have a causal relationship with itself as this would be circular reasoning;"
+    },
+    "(nDCacheMSHRs, power_register)": {
+      "result": "A",
+      "explanation": "More MSHRs require additional register structures to track outstanding cache misses, directly increasing register file power consumption;"
+    }
+  }
+}

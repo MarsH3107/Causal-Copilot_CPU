@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 34,
+  "sample_results": {
+    "(numRasEntries, numRobEntries)": {
+      "result": "C",
+      "explanation": "RAS entries for return address prediction and ROB entries for instruction reordering are independent microarchitectural parameters that serve different functions in the processor pipeline;"
+    },
+    "(numRasEntries, nL2TLBEntries)": {
+      "result": "C",
+      "explanation": "Return address stack size and L2 TLB entries are independent parameters serving different functions - branch prediction versus memory address translation;"
+    },
+    "(numRasEntries, area)": {
+      "result": "A",
+      "explanation": "Increasing RAS entries requires additional storage hardware which directly increases the total chip area;"
+    }
+  }
+}

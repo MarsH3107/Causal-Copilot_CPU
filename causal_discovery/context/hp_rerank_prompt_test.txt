@@ -1,0 +1,736 @@
+User original query (TOP PRIORITY):
+Use PC algorithm for causal discovery. CAUSAL STRUCTURE DEFINITION FOR CPU DESIGN SPACE EXPLORATION
+
+=== THREE-TIER HIERARCHICAL CONSTRAINT ===
+
+TIER 0 - Exogenous Microarchitectural Parameters (22 variables)
+BranchPredictor, fetchWidth, numFetchBufferEntries, numRasEntries, maxBrCount, decodeWidth, numRobEntries, numIntPhysRegisters, memIssueWidth, intIssueWidth, numLdqEntries, enablePrefetching, enableSFBOpt, numRXQEntries, numRCQEntries, nL2TLBEntries, nL2TLBWays, nICacheWays, nICacheTLBWays, nDCacheWays, nDCacheMSHRs, nDCacheTLBWays.
+
+These are design-time configurable parameters. They act ONLY as causes (parent nodes), NEVER as effects. They have NO causal relationships among themselves.
+
+TIER 1 - Endogenous Intermediate Mechanisms (11 variables)
+power_leakage, power_internal, power_switching, power_memory, power_register, power_logic, power_clock, power_pad, area_cell_count, area_cell_area, area_net_area.
+
+These are independent measurement metrics. CRITICAL - They are INDEPENDENTLY measured components that do NOT cause each other. Each is directly determined by Tier 0 parameters. They have NO causal relationships among themselves. They only aggregate into Tier 2 final metrics.
+
+TIER 2 - Final Performance Metrics (4 variables)
+cpi, power, area, time.
+
+These are aggregated outcomes that act ONLY as effects (leaf nodes), NEVER as causes. They are computed by summing or aggregating Tier 1 components.
+
+=== CRITICAL CAUSAL CONSTRAINTS ===
+
+1. FORBIDDEN DIRECTIONS (prevent reverse causality)
+   - Tier 1 to Tier 0 - Intermediate metrics CANNOT cause design parameters
+   - Tier 2 to Tier 0 - Performance metrics CANNOT cause design parameters
+   - Tier 2 to Tier 1 - Performance metrics CANNOT cause intermediate metrics
+
+2. FORBIDDEN WITHIN-TIER (prevent spurious correlations)
+   - No edges between ANY Tier 0 variables (parameters are independently configured)
+   - No edges between ANY Tier 1 variables (they are independently measured components - power_register cannot cause power_clock, area_cell_count cannot cause area_net_area, etc.)
+   - No edges between ANY Tier 2 variables (outcomes are independent metrics)
+
+3. REQUIRED DIRECTIONS (enforce physical causality)
+   - Tier 0 to Tier 1 - Design parameters MUST influence intermediate components
+   - Tier 1 to Tier 2 - Intermediate components MUST aggregate into final metrics
+   - Specifically, power components (power_*) should aggregate into power metric
+   - Specifically, area components (area_*) should aggregate into area metric
+
+4. DOMAIN KNOWLEDGE
+   - Power is the sum of power_leakage, power_internal, power_switching, power_memory, power_register, power_logic, power_clock, power_pad
+   - Area is the sum of area_cell_area and area_net_area (area_cell_count is a count metric)
+   - CPI and time are performance metrics determined by microarchitectural behaviors
+
+=== OBJECTIVE ===
+Discover ONLY the causal pathways from Tier 0 (design parameters) directly to Tier 1 (independent components) directly to Tier 2 (aggregated outcomes). The structure must be strictly hierarchical with no edges within any tier.
+
+The computation has to be finished in the runtime of 1440.0 minutes.
+
+## ⚠️ ESSENTIAL QUERY PRIORITY ⚠️
+- User query SUPERSEDES all standard hyperparameter guidelines
+- Extract specific needs, constraints, domain insights from user query FIRST
+- Parameters MUST be adjusted to meet user's explicit requirements 
+- ALL recommendations MUST directly align with the user's stated objectives
+- User domain knowledge overrides general optimization guidelines
+
+## 🎯 DOMAIN EXPERTISE EXTRACTION 🎯
+**CRITICAL FOR ALGORITHM THAT SUPPORT DOMAIN KNOWLEDGE INJECTION**: Actively analyze the user query and background knowledge for explicit or implicit causal constraints that can be formalized as:
+- **Forbidden edges**: "X cannot cause Y", "A does not influence B", "remove connection between..."
+- **Required edges**: "X must cause Y", "A should influence B", "ensure connection between..."  
+- **Temporal constraints**: "A happens before B", "X precedes Y in time"
+
+When such domain expertise is identified, PRIORITIZE configuring the background_knowledge or link_assumptions parameters to incorporate this valuable prior information.
+
+-----------------------------------------------
+Given a dataset with the following properties:
+
+1. Columns: BranchPredictor	fetchWidth	numFetchBufferEntries	numRasEntries	maxBrCount	decodeWidth	numRobEntries	numIntPhysRegisters	memIssueWidth	intIssueWidth	numLdqEntries	enablePrefetching	enableSFBOpt	numRXQEntries	numRCQEntries	nL2TLBEntries	nL2TLBWays	nICacheWays	nICacheTLBWays	nDCacheWays	nDCacheMSHRs	nDCacheTLBWays	cpi	power	area	power_leakage	power_internal	power_switching	power_memory	power_register	power_logic	power_clock	power_pad	area_cell_count	area_cell_area	area_net_area	time
+2. Statistics:
+The dataset has the following characteristics:
+
+Data Type: The overall data type is Mixture.
+
+The sample size is 1000 with 37 features. 
+
+This dataset is not time-series data. 
+
+Data Quality: There are no missing values in the dataset.
+
+Statistical Properties:
+- Linearity: The relationships between variables are not linear.
+- Gaussian Errors: The errors in the data do not follow a Gaussian distribution.
+- Heterogeneity: The dataset is not heterogeneous. 
+
+
+
+
+3. Background Knowledge:
+# Domain Knowledge Analysis: Computer Architecture Performance Dataset
+
+## 1. VARIABLE DESCRIPTIONS
+
+**Processor Configuration Variables:**
+- **BranchPredictor**: Type of branch prediction mechanism (categorical: tournament, bimodal, etc.)
+- **fetchWidth**: Number of instructions fetched per cycle (typically 1-8)
+- **numFetchBufferEntries**: Size of instruction fetch buffer (typically 16-128 entries)
+- **numRasEntries**: Return Address Stack size for function calls (typically 8-64 entries)
+- **maxBrCount**: Maximum branches predicted per cycle (typically 1-4)
+- **decodeWidth**: Instructions decoded per cycle (typically 1-8)
+- **numRobEntries**: Reorder Buffer size for out-of-order execution (typically 32-512 entries)
+- **numIntPhysRegisters**: Physical integer registers available (typically 64-256)
+- **memIssueWidth**: Memory operations issued per cycle (typically 1-4)
+- **intIssueWidth**: Integer operations issued per cycle (typically 1-8)
+- **numLdqEntries**: Load Queue size (typically 16-128 entries)
+
+**Cache and Memory Configuration:**
+- **enablePrefetching**: Boolean flag for hardware prefetching
+- **enableSFBOpt**: Store-to-Load Forwarding optimization flag
+- **numRXQEntries**: Receive Queue entries (network/memory interface)
+- **numRCQEntries**: Request Completion Queue entries
+- **nL2TLBEntries**: L2 Translation Lookaside Buffer size (typically 512-4096)
+- **nL2TLBWays**: L2 TLB associativity (typically 4-16 ways)
+- **nICacheWays**: Instruction cache associativity (typically 2-8 ways)
+- **nICacheTLBWays**: Instruction cache TLB associativity
+- **nDCacheWays**: Data cache associativity (typically 2-16 ways)
+- **nDCacheMSHRs**: Miss Status Holding Registers for data cache (typically 4-32)
+- **nDCacheTLBWays**: Data cache TLB associativity
+
+**Performance and Resource Metrics:**
+- **cpi**: Cycles Per Instruction (lower is better, typically 0.5-5.0)
+- **power**: Total power consumption (Watts)
+- **area**: Total chip area (mm²)
+- **time**: Execution time or simulation time
+
+**Detailed Power Breakdown:**
+- **power_leakage**: Static power consumption
+- **power_internal**: Internal switching power
+- **power_switching**: Dynamic switching power
+- **power_memory**: Memory subsystem power
+- **power_register**: Register file power
+- **power_logic**: Logic circuits power
+- **power_clock**: Clock distribution power
+- **power_pad**: I/O pad power
+
+**Area Breakdown:**
+- **area_cell_count**: Number of standard cells
+- **area_cell_area**: Area occupied by cells
+- **area_net_area**: Area for interconnect routing
+
+## 2. CAUSAL RELATIONSHIPS
+
+**Direct Causal Paths:**
+- Buffer sizes → Performance (CPI): Larger buffers reduce stalls
+- Issue widths → Performance: Wider issue improves ILP exploitation
+- Cache parameters → Performance: Better cache design reduces miss rates
+- All configuration parameters → Power consumption
+- All configuration parameters → Area consumption
+- Performance optimizations → Power-performance tradeoffs
+
+**Indirect Causal Chains:**
+- Buffer sizes → Reduced stalls → Better performance → Higher power density
+- Cache improvements → Fewer memory accesses → Reduced memory power
+- Wider issue → More parallel execution → Higher switching power
+
+## 3. RELATIONSHIP NATURE
+
+**Primarily Nonlinear Relationships:**
+- Performance vs. buffer sizes: Diminishing returns (logarithmic)
+- Power vs. frequency/width: Often quadratic or cubic
+- Area vs. cache size: Near-linear but with discrete jumps
+- CPI vs. configuration: Complex interactions with workload characteristics
+
+**Examples:**
+- Doubling cache size may only improve performance by 10-20%
+- Increasing issue width from 4 to 8 may have minimal benefit due to ILP limits
+
+## 4. DATA DISTRIBUTION
+
+**Expected Distributions:**
+- **CPI**: Right-skewed, typically 0.5-3.0 with long tail
+- **Power**: Log-normal distribution due to multiplicative effects
+- **Area**: Approximately normal for similar architectures
+- **Buffer sizes**: Discrete values, often powers of 2
+- **Cache parameters**: Discrete, constrained by implementation
+
+## 5. CONFOUNDERS
+
+**Unmeasured Variables:**
+- **Workload characteristics**: Instruction mix, memory access patterns
+- **Technology node**: Manufacturing process (45nm, 28nm, etc.)
+- **Operating conditions**: Temperature, voltage, frequency
+- **Compiler optimizations**: Code generation quality
+- **Memory hierarchy details**: L1 cache sizes, memory bandwidth
+
+## 6. TEMPORAL ASPECTS
+
+**Limited Temporal Dependencies:**
+- This appears to be cross-sectional design space exploration data
+- **time** variable likely represents simulation duration, not temporal causality
+- No inherent time-series structure expected
+
+## 7. HETEROGENEITY
+
+**Subgroup Variations:**
+- **Workload types**: CPU-intensive vs. memory-intensive applications
+- **Architecture families**: In-order vs. out-of-order processors
+- **Power domains**: High-performance vs. low-power designs
+- **Application domains**: Server, mobile, embedded systems
+
+## 8. GRAPH DENSITY
+
+**Moderately Dense Causal Structure:**
+- Most configuration parameters affect performance and power
+- Strong interconnections between related subsystems
+- Approximately 30-40% of possible edges likely present
+- Hierarchical structure with subsystem clusters
+
+## 9. DOMAIN-SPECIFIC CONSTRAINTS
+
+**Physical Constraints:**
+- **Amdahl's Law**: Parallelism benefits are limited
+- **Power-Performance Tradeoffs**: Fundamental energy-delay products
+- **Area Constraints**: Physical limits on chip size
+- **Thermal Limits**: Power density constraints
+- **Technology Scaling**: Moore's Law limitations
+
+**Logical Constraints:**
+- Buffer sizes must be powers of 2
+- Associativity limited by practical implementation
+- Issue width cannot exceed decode width
+
+## 10. RELEVANT LITERATURE
+
+**Key References:**
+- Hennessy & Patterson: "Computer Architecture: A Quantitative Approach"
+- SPEC CPU benchmarking methodologies
+- CACTI power and area modeling
+- McPAT power modeling framework
+- Design space exploration papers in ISCA, MICRO, ASPLOS conferences
+
+## 11. DATA QUALITY ISSUES
+
+**Potential Issues:**
+- **Simulation accuracy**: Models may not reflect real hardware
+- **Parameter interactions**: Complex dependencies may be undermodeled
+- **Workload representativeness**: Limited benchmark coverage
+- **Technology assumptions**: Outdated or idealized models
+- **Measurement precision**: Rounding in simulation tools
+
+## 12. INTERACTION EFFECTS
+
+**Complex Interactions:**
+- **Cache size × Prefetching**: Multiplicative effects on performance
+- **Issue width × Register count**: Threshold effects for register pressure
+- **Buffer sizes × Memory latency**: Nonlinear interaction patterns
+- **Power components**: Sublinear scaling with parallelism
+
+## 13. FEEDBACK LOOPS
+
+**Limited Feedback in Design Space:**
+- **Thermal feedback**: Higher power → temperature → leakage power
+- **Resource contention**: Multiple units competing for shared resources
+- **Dynamic adaptation**: Runtime optimization affecting subsequent behavior
+
+## 14. INSTRUMENTAL VARIABLES
+
+**Potential Instruments:**
+- **Technology constraints**: Manufacturing limits as instruments for area
+- **Design methodology**: Automated vs. manual optimization
+- **Tool versions**: Different CAD tool versions affecting results
+
+## 15. INTERVENTION HISTORY
+
+**Design Space Exploration Context:**
+- Variables represent **design choices** rather than natural experiments
+- Each row likely represents a **designed configuration**
+- No temporal interventions expected
+- Systematic exploration of parameter space
+
+## 16-20. TIME-SERIES ASPECTS
+
+**Not Applicable:**
+This dataset represents cross-sectional design space exploration rather than time-series data. The 'time' variable likely represents simulation execution time or design evaluation time, not temporal causality.
+
+**Summary:** This is a computer architecture design space exploration dataset where configuration parameters causally determine performance, power, and area metrics through complex, primarily nonlinear relationships governed by fundamental computer architecture principles.
+
+We have selected the following algorithm for causal discovery:
+
+Algorithm: PC
+
+Now, we need to determine the optimal hyperparameters for this algorithm. I'll guide you through a systematic approach to select values that prioritize accuracy while maintaining computational efficiency for moderate graph sizes.
+
+Primary hyperparameters to configure: alpha, indep_test, depth
+
+For each hyperparameter, please follow this structured approach:
+
+Step 1: Understand the dataset characteristics
+   - Consider the number of variables (graph size)
+   - Analyze sample size and data distribution
+   - Note if data is linear/nonlinear, continuous/discrete/mixed
+   - For time-series data, prioritize the statistically estimated lag order
+
+Step 2: Assess computational resources
+   - Consider the hardware constraints and GPU availability:
+   
+Current machine doesn't support CUDA, do not choose any GPU-powered algorithms.
+
+   - Prioritize to GPU implemented hyperparameter when dealing with large graph (variable size > 150) to achieve more efficient speedup
+
+Step 3: Evaluate each hyperparameter's impact on accuracy vs. efficiency
+   - Critical parameters affecting accuracy (e.g., significance levels, independence tests)
+   - Parameters affecting computational complexity (e.g., search depth, maximum conditions)
+   - Parameters controlling sparsity (e.g., regularization, thresholds)
+
+Step 4: Analyze algorithm-specific recommendations
+   - Review expert suggestions for each parameter:
+   "**Parameter:** alpha\n- **Meaning:** Desired significance level in (0, 1)\n- **Available Values:**\n  - 0.05\n  - 0.1\n  - 0.01\n- **Expert Suggestion:** Use 0.05 as default. Adjust based on sample size, more conservative (lower) values for larger samples. If < 500, use 0.1; Else if 500-10000 (<10000 but >500), use 0.05; Else if > 10000, using 0.01.\n\n**Parameter:** indep_test\n- **Meaning:** Independence test method\n- **Available Values:**\n  - fisherz_cpu\n  - fisherz_gpu\n  - chisq_cpu\n  - chisq_gpu\n  - kci_cpu\n  - cmiknn_gpu\n  - fastkci_cpu\n  - rcit_cpu\n- **Expert Suggestion:** Use fisherz_cpu as default (for linear data). Choose based on data type and hardware. DON'T use nonlinear/non-parametric tests for linear/discrete data.\n\nLINEAR/DISCRETE (PARAMETRIC) TESTS:\n- 'fisherz_cpu': For linear continuous data (default choice for linear data)\n- 'fisherz_gpu': GPU version for linear continuous data (only if variable size > 150 and sample size > 7500)\n- 'chisq_cpu': For discrete data only\n- 'chisq_gpu': GPU version for discrete data (only if variable size > 150 and sample size > 7500)\n\nNONLINEAR/NON-PARAMETRIC TESTS:\n- 'kci_cpu': For nonlinear data (very slow, ONLY use if variable size < 10 and sample size < 1500)\n- 'rcit_cpu': Fastest approximation of kci (use only if variable size < 100 and sample size < 10000)\n- 'fastkci_cpu': Divide-and-conquer version of kci, faster than kci but less accurate (use only if variable size < 20 and sample size < 3000)\n- 'cmiknn_gpu': GPU accelerated nonlinear test (use only if data is nonlinear, and variable size > 50 or sample size > 3000)\n\nFor nonlinear data, as long as variable and sample size constraints are fulfilled, choose in order of accuracy: KCI > RCIT > FastKCI >= CMiKNN. For smaller datasets, use CPU tests for better accuracy even if GPU is available. You MUST use GPU tests for large datasets (variable size > 150) if GPU is available.\n\n**Parameter:** depth\n- **Meaning:** Maximum depth for skeleton search\n- **Available Values:**\n  - -1\n  - 6\n  - 5\n  - 4\n  - 3\n- **Expert Suggestion:** Use -1 as default. Use -1 for unlimited depth. For large graphs, limiting depth (e.g., 2-4) can significantly speed up the algorithm with a minor trade-off in accuracy. For CPU-based independence tests: A graph with node number < 10, use depth 6; A graph with node number 10-25, use depth 5; A graph with node number 25-50, use depth 4; A graph with node number > 50, use depth 3. For GPU-accelerated independence tests: A graph with node number < 50, use depth -1; A graph with node number 50-100, use depth 5; A graph with node number > 100, use depth 4.\n\n**Parameter:** background_knowledge\n- **Meaning:** Domain expertise constraints on causal structure\n- **Available Values:**\n  - None\n- **Expert Suggestion:** Use null as default when no domain knowledge is available. When user provides explicit causal constraints, the LLM will automatically format them as a JSON object with the following structure:\n\n**FORBIDDEN EDGES**: When user specifies edges that should NOT exist\n- Format: {\"forbidden_edges\": [[\"var1\", \"var2\"], [\"var3\", \"var4\"]]}\n- Example: User says 'Temperature cannot cause Age' \u2192 {\"forbidden_edges\": [[\"Temperature\", \"Age\"]]}\n\n**REQUIRED EDGES**: When user specifies edges that MUST exist  \n- Format: {\"required_edges\": [[\"var1\", \"var2\"], [\"var3\", \"var4\"]]}\n- Example: User says 'Education must influence Income' \u2192 {\"required_edges\": [[\"Education\", \"Income\"]]}\n\n**TIER CONSTRAINTS**: When user specifies variable ordering/hierarchy\n- Format: {\"tiers\": {\"var1\": 0, \"var2\": 1, \"var3\": 1, \"var4\": 2}}\n- Example: User says 'Demographics \u2192 Behaviors \u2192 Outcomes' \u2192 {\"tiers\": {\"Age\": 0, \"Education\": 0, \"Exercise\": 1, \"Diet\": 1, \"Health\": 2}}\n\n**MIXED CONSTRAINTS**: Combine multiple constraint types when user provides complex domain knowledge\n- Format: {\"forbidden_edges\": [...], \"required_edges\": [...], \"tiers\": {...}}\n\nIMPORTANT: Only use when domain constraints are explicitly or clearly implied in user query. Improper constraints can hurt performance. The LLM should extract constraint information from user input and format it as a structured JSON object.\n\n"
+
+Step 5: Analyze algorithm performance with different hyperparameter configurations (If existed)
+   - Review benchmarking results for this algorithm with various hyperparameter settings
+   - Identify which configurations perform best on datasets with similar characteristics
+   - Consider how different hyperparameter values affect performance metrics
+   - Analyze the trade-offs between accuracy and computational efficiency
+
+# ALGORITHM BENCHMARKING RESULTS
+
+• CAUTIONARY NOTE
+  – These benchmarking results should be used as guidelines, not definitive judgments
+  – Performance may vary significantly with real-world data compared to simulations
+  – Consider your specific domain knowledge and data characteristics when selecting algorithms
+• Simulation Settings
+  – Network sizes: 5 to 1000 nodes
+  – Sample sizes: 500 to 10000 data points
+  – Edge density: 0.11 to 0.78 probability (avg. degree 1 to 7)
+  – Data types: Continuous and mixed (0-20% discrete variables)
+  – Function types: Linear and non-linear (MLP) relationships
+  – Noise types: Gaussian and uniform distributions
+
+• Challenge Scenarios
+  – Measurement error: 10%, 30%, 50% noise in observations
+  – Missing data: 10%, 20%, 30% missing values
+  – Multi-domain data: 1, 2, 5, or 10 heterogeneous domains
+  – Each configuration tested with 3 different random seeds
+
+• Key Terms
+  – (linear): Scenarios where relationships between variables follow linear functions
+  – (mlp): Scenarios where relationships are non-linear (using multilayer perceptron models)
+
+• Scenario Types
+  – Robustness scenarios (e.g., Variable Scaling, Edge Probability): Test algorithm performance across varying levels of a property
+  – Specific scenarios (e.g., Gaussian Noise, Dense Graph): Test performance at a fixed specific setting
+
+• Performance Metrics
+  – Performance level (1-10): Based on F1 score, higher is better
+  – Efficiency level (0-5): Based on runtime, higher is better (only relevant for scaling scenarios)
+  – Stability: Standard deviation of performance, lower values indicate more consistent results
+
+• Important Note on Efficiency Scoring
+  – Benchmarks include large-scale systems with up to 1000 nodes and may timeout for some algorithms
+  – For large-scale systems (node size > 200), prioritize algorithms that can utilize available GPUs
+  – GPU-accelerated methods provide significant efficiency advantages in large-scale scenarios
+
+────────────────────────────────────────────────────────
+Filtered Benchmarking Results
+────────────────────────────────────────────────────────
+
+Algorithms included: PC
+
+────────────────────────────────────────────────────────
+Overall Algorithm Performance
+────────────────────────────────────────────────────────
+
+⚠️ IMPORTANT: Overall rankings can be misleading! ⚠️
+- An algorithm with high average performance may perform poorly on specific scenarios
+- Always check scenario-specific performance for your use case
+
+Overall ranking based on average performance across all scenarios:
+
+1. PC_indep_test=rcit_cpu: 6.6
+2. PC_indep_test=fisherz_cpu: 6.2
+3. PC_indep_test=fisherz_gpu: 6.1
+4. PC_indep_test=kci_cpu: 5.9
+5. PC_indep_test=fastkci_cpu: 5.3
+6. PC_indep_test=cmiknn_gpu: 5.0
+
+
+────────────────────────────────────────────────────────
+Efficiency Comparison
+────────────────────────────────────────────────────────
+
+Note: Efficiency scores are primarily measured in Variable Scaling and Sample Scaling scenarios.
+
+| Algorithm | Variable Scaling (linear) | Sample Scaling (linear) | Variable Scaling (mlp) | Sample Scaling (mlp) | Average |
+|-----------|---------------------------|--------------------------|------------------------|----------------------|--------|
+| PC_indep_test=fisherz_gpu | 5.0 | N/A | 5.0 | N/A | 5.0 |
+| PC_indep_test=cmiknn_gpu | 4.0 | N/A | 4.1 | N/A | 4.1 |
+| PC_indep_test=fisherz_cpu | 3.9 | N/A | 3.9 | N/A | 3.9 |
+| PC_indep_test=rcit_cpu | 3.2 | N/A | 3.5 | N/A | 3.4 |
+| PC_indep_test=kci_cpu | 1.9 | N/A | 1.9 | N/A | 1.9 |
+| PC_indep_test=fastkci_cpu | 1.6 | N/A | 1.8 | N/A | 1.7 |
+
+
+────────────────────────────────────────────────────────
+Algorithm Recommendations by Scenario Type
+────────────────────────────────────────────────────────
+
+• Linear Relationships
+  1. PC_indep_test=fisherz_cpu: Performance 6.8
+  2. PC_indep_test=fisherz_gpu: Performance 6.7
+  3. PC_indep_test=rcit_cpu: Performance 6.7
+
+• Non-Linear Relationships
+  1. PC_indep_test=rcit_cpu: Performance 6.7
+  2. PC_indep_test=kci_cpu: Performance 5.6
+  3. PC_indep_test=fisherz_cpu: Performance 5.4
+
+• Data with Missing Values
+  1. PC_indep_test=kci_cpu: Performance 6.8
+  2. PC_indep_test=rcit_cpu: Performance 6.8
+  3. PC_indep_test=fisherz_cpu: Performance 6.3
+
+• Data with Measurement Error
+  1. PC_indep_test=kci_cpu: Performance 7.8
+  2. PC_indep_test=fisherz_gpu: Performance 7.7
+  3. PC_indep_test=fastkci_cpu: Performance 7.1
+
+• Dense vs Sparse Graphs
+  1. PC_indep_test=rcit_cpu: Performance 5.9
+  2. PC_indep_test=fisherz_cpu: Performance 5.3
+  3. PC_indep_test=kci_cpu: Performance 5.3
+
+• Heterogeneous Data
+  1. PC_indep_test=kci_cpu: Performance 5.7
+  2. PC_indep_test=fisherz_cpu: Performance 5.5
+  3. PC_indep_test=rcit_cpu: Performance 5.4
+
+
+────────────────────────────────────────────────────────
+Performance by Scenario
+────────────────────────────────────────────────────────
+
+### ROBUSTNESS SCENARIOS
+These scenarios test algorithm performance across varying levels of a property.
+
+
+• Variable Scaling (linear)
+| Algorithm | Performance | Stability | Efficiency | Overall Score |
+|-----------|------------|-----------|------------|-------------|
+| PC_indep_test=fisherz_gpu | 7.3 | 7.1 | 5.0 | 7.2 |
+| PC_indep_test=rcit_cpu | 6.9 | 6.5 | 3.2 | 6.6 |
+| PC_indep_test=fisherz_cpu | 6.7 | 4.1 | 3.9 | 6.4 |
+| PC_indep_test=cmiknn_gpu | 6.0 | 10.5 | 4.0 | 5.6 |
+| PC_indep_test=fastkci_cpu | 3.1 | 7.4 | 1.6 | 2.9 |
+| PC_indep_test=kci_cpu | 2.9 | 8.5 | 1.9 | 2.8 |
+
+• Sample Scaling (linear)
+| Algorithm | Performance | Stability | Efficiency | Overall Score |
+|-----------|------------|-----------|------------|-------------|
+| PC_indep_test=fisherz_cpu | 8.9 | 5.0 | N/A | 8.9 |
+| PC_indep_test=fisherz_gpu | 8.5 | 8.6 | N/A | 8.5 |
+| PC_indep_test=rcit_cpu | 8.3 | 7.8 | N/A | 8.3 |
+| PC_indep_test=cmiknn_gpu | 6.6 | 8.5 | N/A | 6.6 |
+| PC_indep_test=kci_cpu | 5.2 | 7.5 | N/A | 5.2 |
+| PC_indep_test=fastkci_cpu | 5.1 | 5.7 | N/A | 5.1 |
+
+• Heterogeneity (linear)
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=kci_cpu | 7.7 | 10.8 |
+| PC_indep_test=fisherz_cpu | 7.5 | 6.1 |
+| PC_indep_test=fisherz_gpu | 7.0 | 4.6 |
+| PC_indep_test=fastkci_cpu | 6.9 | 5.6 |
+| PC_indep_test=rcit_cpu | 6.8 | 8.2 |
+| PC_indep_test=cmiknn_gpu | 5.1 | 0.9 |
+
+• Measurement Error (linear)
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=kci_cpu | 8.8 | 4.1 |
+| PC_indep_test=fisherz_gpu | 8.8 | 7.7 |
+| PC_indep_test=fastkci_cpu | 8.6 | 9.1 |
+| PC_indep_test=rcit_cpu | 8.3 | 10.3 |
+| PC_indep_test=fisherz_cpu | 8.1 | 11.5 |
+| PC_indep_test=cmiknn_gpu | 6.4 | 3.8 |
+
+• Noise Type (linear)
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=fastkci_cpu | 9.2 | 2.0 |
+| PC_indep_test=fisherz_cpu | 8.8 | 4.5 |
+| PC_indep_test=kci_cpu | 8.7 | 2.0 |
+| PC_indep_test=rcit_cpu | 7.8 | 6.0 |
+| PC_indep_test=fisherz_gpu | 6.9 | 5.0 |
+| PC_indep_test=cmiknn_gpu | 6.1 | 1.0 |
+
+• Missing Data (linear)
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=fastkci_cpu | 7.3 | 8.0 |
+| PC_indep_test=fisherz_cpu | 7.0 | 4.3 |
+| PC_indep_test=rcit_cpu | 6.7 | 9.9 |
+| PC_indep_test=kci_cpu | 6.7 | 5.7 |
+| PC_indep_test=fisherz_gpu | 6.3 | 5.3 |
+| PC_indep_test=cmiknn_gpu | 4.9 | 3.7 |
+
+• Edge Probability (linear)
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=rcit_cpu | 6.1 | 5.7 |
+| PC_indep_test=fisherz_cpu | 6.0 | 7.4 |
+| PC_indep_test=fastkci_cpu | 5.9 | 7.7 |
+| PC_indep_test=fisherz_gpu | 5.7 | 5.4 |
+| PC_indep_test=kci_cpu | 5.4 | 6.4 |
+| PC_indep_test=cmiknn_gpu | 4.4 | 2.6 |
+
+• Discrete Ratio (linear)
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=fisherz_gpu | 6.7 | 10.2 |
+| PC_indep_test=fisherz_cpu | 6.2 | 4.8 |
+| PC_indep_test=rcit_cpu | 6.1 | 2.2 |
+| PC_indep_test=fastkci_cpu | 6.0 | 7.3 |
+| PC_indep_test=kci_cpu | 5.5 | 6.4 |
+| PC_indep_test=cmiknn_gpu | 4.4 | 2.9 |
+
+• Variable Scaling (mlp)
+| Algorithm | Performance | Stability | Efficiency | Overall Score |
+|-----------|------------|-----------|------------|-------------|
+| PC_indep_test=rcit_cpu | 6.1 | 4.2 | 3.5 | 5.9 |
+| PC_indep_test=cmiknn_gpu | 5.0 | 13.4 | 4.1 | 4.9 |
+| PC_indep_test=fisherz_cpu | 4.9 | 6.4 | 3.9 | 4.9 |
+| PC_indep_test=fisherz_gpu | 4.8 | 9.4 | 5.0 | 4.8 |
+| PC_indep_test=kci_cpu | 2.8 | 11.1 | 1.9 | 2.6 |
+| PC_indep_test=fastkci_cpu | 1.6 | 7.2 | 1.8 | 1.6 |
+
+• Sample Scaling (mlp)
+| Algorithm | Performance | Stability | Efficiency | Overall Score |
+|-----------|------------|-----------|------------|-------------|
+| PC_indep_test=rcit_cpu | 8.4 | 11.1 | N/A | 8.4 |
+| PC_indep_test=fisherz_cpu | 6.7 | 7.5 | N/A | 6.7 |
+| PC_indep_test=fisherz_gpu | 5.5 | 6.2 | N/A | 5.5 |
+| PC_indep_test=cmiknn_gpu | 5.4 | 14.9 | N/A | 5.4 |
+| PC_indep_test=kci_cpu | 5.1 | 12.0 | N/A | 5.1 |
+| PC_indep_test=fastkci_cpu | 3.0 | 11.8 | N/A | 3.0 |
+
+• Heterogeneity (mlp)
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=kci_cpu | 6.0 | 2.4 |
+| PC_indep_test=rcit_cpu | 5.6 | 5.0 |
+| PC_indep_test=cmiknn_gpu | 4.7 | 13.7 |
+| PC_indep_test=fisherz_gpu | 4.6 | 5.4 |
+| PC_indep_test=fastkci_cpu | 4.5 | 13.0 |
+| PC_indep_test=fisherz_cpu | 4.2 | 3.1 |
+
+• Measurement Error (mlp)
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=kci_cpu | 6.9 | 5.0 |
+| PC_indep_test=rcit_cpu | 6.7 | 5.2 |
+| PC_indep_test=fisherz_cpu | 5.6 | 6.6 |
+| PC_indep_test=fastkci_cpu | 5.0 | 8.5 |
+| PC_indep_test=fisherz_gpu | 4.9 | 4.7 |
+| PC_indep_test=cmiknn_gpu | 4.4 | 2.8 |
+
+• Noise Type (mlp)
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=rcit_cpu | 7.9 | 1.5 |
+| PC_indep_test=kci_cpu | 6.8 | 1.5 |
+| PC_indep_test=fisherz_cpu | 5.8 | 0.0 |
+| PC_indep_test=fisherz_gpu | 5.7 | 3.5 |
+| PC_indep_test=fastkci_cpu | 4.8 | 3.0 |
+| PC_indep_test=cmiknn_gpu | 4.6 | 0.0 |
+
+• Missing Data (mlp)
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=kci_cpu | 7.5 | 5.5 |
+| PC_indep_test=rcit_cpu | 6.5 | 12.6 |
+| PC_indep_test=fisherz_cpu | 6.1 | 7.2 |
+| PC_indep_test=fisherz_gpu | 5.6 | 7.0 |
+| PC_indep_test=fastkci_cpu | 4.4 | 5.9 |
+| PC_indep_test=cmiknn_gpu | 4.3 | 8.7 |
+
+• Edge Probability (mlp)
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=rcit_cpu | 6.4 | 4.8 |
+| PC_indep_test=kci_cpu | 6.3 | 5.7 |
+| PC_indep_test=fisherz_gpu | 5.3 | 11.7 |
+| PC_indep_test=fisherz_cpu | 5.2 | 7.8 |
+| PC_indep_test=cmiknn_gpu | 4.9 | 8.9 |
+| PC_indep_test=fastkci_cpu | 3.7 | 11.8 |
+
+• Discrete Ratio (mlp)
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=rcit_cpu | 8.0 | 0.0 |
+| PC_indep_test=kci_cpu | 6.7 | 0.0 |
+| PC_indep_test=fisherz_cpu | 6.4 | 0.0 |
+| PC_indep_test=fisherz_gpu | 5.8 | 0.0 |
+| PC_indep_test=cmiknn_gpu | 3.9 | 0.0 |
+| PC_indep_test=fastkci_cpu | 3.3 | 0.0 |
+
+### SPECIFIC SCENARIOS
+These scenarios test algorithm performance at specific settings rather than variable levels.
+
+
+• Linear Function
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=fisherz_gpu | 5.9 | 0.0 |
+| PC_indep_test=fisherz_cpu | 5.3 | 0.0 |
+| PC_indep_test=rcit_cpu | 5.2 | 0.0 |
+| PC_indep_test=cmiknn_gpu | 4.8 | 0.0 |
+| PC_indep_test=kci_cpu | 2.3 | 0.0 |
+| PC_indep_test=fastkci_cpu | 2.3 | 0.0 |
+
+• Non-Linear Function
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=rcit_cpu | 4.4 | 0.0 |
+| PC_indep_test=cmiknn_gpu | 4.1 | 0.0 |
+| PC_indep_test=fisherz_gpu | 4.0 | 0.0 |
+| PC_indep_test=fisherz_cpu | 3.5 | 0.0 |
+| PC_indep_test=kci_cpu | 2.2 | 0.0 |
+| PC_indep_test=fastkci_cpu | 1.0 | 0.0 |
+
+• Gaussian Noise
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=fastkci_cpu | 8.8 | 0.0 |
+| PC_indep_test=fisherz_cpu | 8.2 | 0.0 |
+| PC_indep_test=kci_cpu | 8.1 | 0.0 |
+| PC_indep_test=fisherz_gpu | 8.0 | 0.0 |
+| PC_indep_test=rcit_cpu | 8.0 | 0.0 |
+| PC_indep_test=cmiknn_gpu | 5.2 | 0.0 |
+
+• Non-Gaussian Noise
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=fastkci_cpu | 9.5 | 0.0 |
+| PC_indep_test=kci_cpu | 9.3 | 0.0 |
+| PC_indep_test=fisherz_cpu | 9.3 | 0.0 |
+| PC_indep_test=rcit_cpu | 7.6 | 0.0 |
+| PC_indep_test=cmiknn_gpu | 7.0 | 0.0 |
+| PC_indep_test=fisherz_gpu | 5.8 | 0.0 |
+
+• Dense Graph
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=rcit_cpu | 3.4 | 0.0 |
+| PC_indep_test=fisherz_cpu | 3.3 | 0.0 |
+| PC_indep_test=fisherz_gpu | 2.6 | 0.0 |
+| PC_indep_test=kci_cpu | 2.6 | 0.0 |
+| PC_indep_test=cmiknn_gpu | 2.2 | 0.0 |
+| PC_indep_test=fastkci_cpu | 1.9 | 0.0 |
+
+• Sparse Graph
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=rcit_cpu | 7.9 | 0.0 |
+| PC_indep_test=fastkci_cpu | 7.9 | 0.0 |
+| PC_indep_test=fisherz_gpu | 7.3 | 0.0 |
+| PC_indep_test=fisherz_cpu | 6.8 | 0.0 |
+| PC_indep_test=kci_cpu | 6.8 | 0.0 |
+| PC_indep_test=cmiknn_gpu | 6.4 | 0.0 |
+
+• High Missing Data
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=rcit_cpu | 7.2 | 0.0 |
+| PC_indep_test=cmiknn_gpu | 6.6 | 0.0 |
+| PC_indep_test=kci_cpu | 6.3 | 0.0 |
+| PC_indep_test=fisherz_gpu | 6.1 | 0.0 |
+| PC_indep_test=fisherz_cpu | 5.9 | 0.0 |
+| PC_indep_test=fastkci_cpu | 5.6 | 0.0 |
+
+• High Measurement Error
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=fisherz_gpu | 9.5 | 0.0 |
+| PC_indep_test=kci_cpu | 7.8 | 0.0 |
+| PC_indep_test=fastkci_cpu | 7.8 | 0.0 |
+| PC_indep_test=rcit_cpu | 6.1 | 0.0 |
+| PC_indep_test=cmiknn_gpu | 5.6 | 0.0 |
+| PC_indep_test=fisherz_cpu | 5.3 | 0.0 |
+
+• Highly Mixed Data
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=fisherz_gpu | 3.8 | 0.0 |
+| PC_indep_test=rcit_cpu | 3.8 | 0.0 |
+| PC_indep_test=fastkci_cpu | 3.8 | 0.0 |
+| PC_indep_test=fisherz_cpu | 3.8 | 0.0 |
+| PC_indep_test=kci_cpu | 3.0 | 0.0 |
+| PC_indep_test=cmiknn_gpu | 2.2 | 0.0 |
+
+• Highly Heterogeneous
+| Algorithm | Performance | Stability |
+|-----------|------------|----------|
+| PC_indep_test=fisherz_cpu | 6.6 | 0.0 |
+| PC_indep_test=fastkci_cpu | 6.2 | 0.0 |
+| PC_indep_test=fisherz_gpu | 6.2 | 0.0 |
+| PC_indep_test=kci_cpu | 5.9 | 0.0 |
+| PC_indep_test=rcit_cpu | 5.7 | 0.0 |
+| PC_indep_test=cmiknn_gpu | 5.3 | 0.0 |
+
+
+-------------------------------------------
+
+Step 6: Make final decisions based on:
+   - For moderate graph sizes (<50 variables), prioritize accuracy over speed
+   - For large graphs (>50 variables), balance accuracy with feasibility and EFFICIENCY
+   - For time-series data, carefully consider temporal parameters
+
+Please provide your suggestions in a structured JSON format, with detailed reasoning for each hyperparameter. Your response should look like this:
+
+{
+  "algorithm": "PC",
+  "hyperparameters": {
+    "[HYPERPARAMETER_1_NAME]": {
+      "full_name": "[HYPERPARAMETER_1_FULL_NAME]",
+      "reasoning": "[YOUR_STEP_BY_STEP_REASONING_PROCESS]",
+      "value": [SUGGESTED_VALUE],
+      "explanation": "[BRIEF_EXPLANATION_OF_TRADEOFFS]"
+    },
+    "[HYPERPARAMETER_2_NAME]": {
+      "full_name": "[HYPERPARAMETER_2_FULL_NAME]",
+      "reasoning": "[YOUR_STEP_BY_STEP_REASONING_PROCESS]",
+      "value": [SUGGESTED_VALUE],
+      "explanation": "[BRIEF_EXPLANATION_OF_TRADEOFFS]"
+    }
+  }
+}
+
+Important guidelines:
+1. Only select values from the "available_values" list for each hyperparameter
+2. For moderate graph sizes (10-50 variables), prioritize accuracy over speed
+3. For time-series data, give special attention to lag parameters based on statistical estimates
+4. For time-series data of moderate size (10-50) variables, if the estimated time lag is small (1 or 2), consider using a larger value
+5. Consider independence test selection carefully based on data type and computational resources
+6. For regularization parameters, consider the expected graph density
+7. For search depth parameters, consider the complexity of potential causal relationships
+
+Please provide your hyperparameter suggestions following this JSON structure, with clear reasoning that demonstrates you've considered the dataset characteristics, algorithm requirements, and computational constraints.

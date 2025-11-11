@@ -1,0 +1,43 @@
+Total lines: 41
+================================================================================
+Line   1 | Starts with '(': True  | (decodeWidth, CPI): A: Decode width directly affects processor performance by determining how many instructions can be decoded per cycle, with wider decode stages typically reducing CPI by enabling higher instruction throughput;
+Line   2 | Starts with '(': False | 
+Line   3 | Starts with '(': True  | (decodeWidth, memIssueWidth): C: Decode width and memory issue width are independent microarchitectural parameters that operate at different pipeline stages and do not directly influence each other;
+Line   4 | Starts with '(': False | 
+Line   5 | Starts with '(': True  | (decodeWidth, nICacheWays): C: Decode width is a pipeline parameter while instruction cache associativity is a memory hierarchy design choice, making them independent architectural decisions;
+Line   6 | Starts with '(': False | 
+Line   7 | Starts with '(': True  | (decodeWidth, enableSFBOpt): C: Decode width affects instruction processing bandwidth while store-to-load forwarding optimization is a memory subsystem feature, making them independent design parameters;
+Line   8 | Starts with '(': False | 
+Line   9 | Starts with '(': True  | (decodeWidth, nDCacheTLBWays): C: Decode width operates in the front-end pipeline while data cache TLB associativity is a memory management unit design parameter, making them independent;
+Line  10 | Starts with '(': False | 
+Line  11 | Starts with '(': True  | (decodeWidth, numIntPhysRegisters): C: Decode width determines instruction processing rate while the number of physical registers is a register file sizing decision, making them independent architectural choices;
+Line  12 | Starts with '(': False | 
+Line  13 | Starts with '(': True  | (decodeWidth, nL2TLBWays): C: Decode width affects front-end throughput while L2 TLB associativity is a memory management design parameter, making them independent components;
+Line  14 | Starts with '(': False | 
+Line  15 | Starts with '(': True  | (decodeWidth, DCacheMiss): A: Decode width can indirectly influence data cache miss rates by affecting the rate at which memory-accessing instructions are processed and enter the pipeline;
+Line  16 | Starts with '(': False | 
+Line  17 | Starts with '(': True  | (decodeWidth, enablePrefetching): C: Decode width affects instruction processing bandwidth while prefetching is a memory subsystem optimization technique, making them independent design decisions;
+Line  18 | Starts with '(': False | 
+Line  19 | Starts with '(': True  | (decodeWidth, numRobEntries): C: Decode width determines front-end throughput while ROB size is a back-end resource allocation decision, though both affect overall performance independently;
+Line  20 | Starts with '(': False | 
+Line  21 | Starts with '(': True  | (decodeWidth, nDCacheMSHRs): C: Decode width affects instruction processing rate while data cache MSHR count is a memory subsystem resource allocation, making them independent parameters;
+Line  22 | Starts with '(': False | 
+Line  23 | Starts with '(': True  | (decodeWidth, nL2TLBEntries): C: Decode width operates in the instruction pipeline while L2 TLB capacity is a memory management unit sizing decision, making them independent;
+Line  24 | Starts with '(': False | 
+Line  25 | Starts with '(': True  | (decodeWidth, ICacheMiss): A: Decode width can influence instruction cache miss patterns by affecting the rate at which instructions are fetched and processed from the cache;
+Line  26 | Starts with '(': False | 
+Line  27 | Starts with '(': True  | (decodeWidth, numLdqEntries): C: Decode width affects front-end throughput while load queue size is a memory subsystem resource allocation, making them independent design parameters;
+Line  28 | Starts with '(': False | 
+Line  29 | Starts with '(': True  | (decodeWidth, nDCacheWays): C: Decode width determines instruction processing bandwidth while data cache associativity is a memory hierarchy design choice, making them independent;
+Line  30 | Starts with '(': False | 
+Line  31 | Starts with '(': True  | (decodeWidth, decodeWidth): C: A variable cannot have a causal relationship with itself as this would be circular and logically invalid;
+Line  32 | Starts with '(': False | 
+Line  33 | Starts with '(': True  | (decodeWidth, numRCQEntries): C: Decode width affects instruction processing rate while request completion queue size is a memory subsystem parameter, making them independent;
+Line  34 | Starts with '(': False | 
+Line  35 | Starts with '(': True  | (decodeWidth, flush): A: Decode width can influence pipeline flush frequency by affecting the rate at which instructions are processed and potential mispredictions are detected;
+Line  36 | Starts with '(': False | 
+Line  37 | Starts with '(': True  | (decodeWidth, intIssueWidth): C: Decode width and integer issue width are independent pipeline parameters that operate at different stages and are sized based on separate design considerations;
+Line  38 | Starts with '(': False | 
+Line  39 | Starts with '(': True  | (decodeWidth, nICacheTLBWays): C: Decode width affects instruction processing bandwidth while instruction cache TLB associativity is a memory management design parameter, making them independent;
+Line  40 | Starts with '(': False | 
+Line  41 | Starts with '(': True  | (decodeWidth, numRXQEntries): C: Decode width operates in the instruction pipeline while request transmit queue size is a memory subsystem parameter, making them independent design choices;

@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 16,
+  "sample_results": {
+    "(numLdqEntries, CPI)": {
+      "result": "A",
+      "explanation": "The number of load queue entries directly affects memory instruction scheduling and pipeline stalls, where more entries reduce memory-related stalls and improve cycles per instruction performance;"
+    },
+    "(numLdqEntries, nICacheWays)": {
+      "result": "C",
+      "explanation": "Load queue entries handle memory operations while instruction cache ways affect instruction fetch, representing independent architectural components with no direct causal relationship;"
+    },
+    "(numLdqEntries, enableSFBOpt)": {
+      "result": "C",
+      "explanation": "Load queue sizing is a hardware resource allocation decision while store-to-load forwarding optimization is a microarchitectural technique, representing independent design choices;"
+    }
+  }
+}

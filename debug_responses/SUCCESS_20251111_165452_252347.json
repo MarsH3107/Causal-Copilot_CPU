@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 15,
+  "sample_results": {
+    "(cpi, power_memory)": {
+      "result": "B",
+      "explanation": "Memory power consumption affects CPI because higher memory power often correlates with more memory accesses and longer memory latencies, which increase the cycles needed per instruction;"
+    },
+    "(cpi, power)": {
+      "result": "B",
+      "explanation": "Total power consumption influences CPI as higher power usage typically indicates more active components and potentially longer execution times, leading to more cycles per instruction;"
+    },
+    "(cpi, power_pad)": {
+      "result": "C",
+      "explanation": "Pad power consumption is related to I/O interface power and has no direct causal relationship with the cycles per instruction metric;"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+Filtered lines (starting with '('): 9
+================================================================================
+1. (nICacheWays, DCacheMiss): C: The number of ways in the instruction cache associativity is independent of data cache miss rates since instruction cache configuration does not directly affect data memory access patterns;
+2. (nICacheWays, nDCacheMSHRs): C: Instruction cache associativity configuration is independent of data cache Miss Status Holding Registers since these are separate cache subsystems with distinct purposes;
+3. (nICacheWays, ICacheMiss): A: Increasing the number of ways in instruction cache associativity directly reduces instruction cache miss rates by providing more storage locations for instruction blocks and reducing cache conflicts;
+4. (nICacheWays, nDCacheWays): C: The associativity configuration of instruction cache is independent of data cache associativity since these are separate cache design parameters that can be configured independently;
+5. (nICacheWays, flush): C: Instruction cache associativity does not directly cause pipeline flushes, as flushes are typically triggered by control flow changes or hazards rather than cache configuration;
+6. (nICacheWays, nICacheTLBWays): C: Instruction cache associativity and instruction TLB associativity are independent design parameters that can be configured separately without direct causal relationship;
+7. (nICacheWays, CPI): A: Higher instruction cache associativity reduces instruction cache misses, which decreases memory access latency and directly improves cycles per instruction performance;
+8. (nICacheWays, nICacheWays): C: A variable cannot cause itself as this would be a circular relationship;
+9. (nICacheWays, nDCacheTLBWays): C: Instruction cache associativity is independent of data cache TLB associativity since these are separate subsystems serving different memory access patterns

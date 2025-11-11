@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 21,
+  "sample_result": {
+    "(decodeWidth, CPI)": {
+      "result": "A",
+      "explanation": "Decode width directly affects processor performance by determining how many instructions can be decoded per cycle, with wider decode stages typically reducing CPI by enabling higher instruction throughput;"
+    },
+    "(decodeWidth, memIssueWidth)": {
+      "result": "C",
+      "explanation": "Decode width and memory issue width are independent microarchitectural parameters that operate at different pipeline stages and do not directly influence each other;"
+    },
+    "(decodeWidth, nICacheWays)": {
+      "result": "C",
+      "explanation": "Decode width is a pipeline parameter while instruction cache associativity is a memory hierarchy design choice, making them independent architectural decisions;"
+    }
+  }
+}

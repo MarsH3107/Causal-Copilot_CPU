@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 7,
+  "sample_result": {
+    "(nDCacheWays, CPI)": {
+      "result": "A",
+      "explanation": "Increasing the number of data cache ways reduces cache miss rates by providing more storage locations for conflicting memory addresses, which directly improves processor performance by reducing the cycles per instruction;"
+    },
+    "(nDCacheWays, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "The number of data cache ways and the number of data cache TLB ways are independent architectural design parameters that can be configured separately without one directly influencing the other;"
+    },
+    "(nDCacheWays, DCacheMiss)": {
+      "result": "A",
+      "explanation": "Higher data cache associativity directly reduces the probability of cache misses by providing more ways to store conflicting memory blocks, thereby decreasing the overall miss rate;"
+    }
+  }
+}

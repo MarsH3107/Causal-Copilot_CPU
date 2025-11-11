@@ -1,0 +1,7 @@
+Filtered lines (starting with '('): 5
+================================================================================
+1. (nDCacheTLBWays, CPI): A: Increasing the number of ways in the data cache TLB reduces TLB miss rates and memory access latency, which directly decreases the cycles per instruction by improving memory system performance;
+2. (nDCacheTLBWays, nDCacheTLBWays): C: A variable cannot have a causal relationship with itself as this would be logically inconsistent and meaningless in any causal analysis;
+3. (nDCacheTLBWays, DCacheMiss): A: Higher associativity in the data cache TLB reduces TLB conflicts and improves virtual-to-physical address translation efficiency, which can reduce data cache miss rates by enabling more effective memory access patterns;
+4. (nDCacheTLBWays, ICacheMiss): C: The data cache TLB configuration primarily affects data memory accesses and has no direct architectural connection to instruction cache miss behavior, as they operate on separate memory hierarchies;
+5. (nDCacheTLBWays, flush): C: Data cache TLB associativity is a static hardware configuration parameter that does not directly influence pipeline control decisions or branch misprediction events that cause pipeline flushes

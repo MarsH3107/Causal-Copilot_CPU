@@ -1,0 +1,20 @@
+Filtered lines (starting with '('): 18
+================================================================================
+1. (memIssueWidth, intIssueWidth): C: Memory issue width and integer issue width are independent architectural parameters that can be configured separately, as they control different execution units in the processor pipeline;
+2. (memIssueWidth, nICacheTLBWays): C: Memory issue width affects memory operation throughput while instruction cache TLB ways determine address translation capacity, representing independent architectural design choices;
+3. (memIssueWidth, numRXQEntries): C: Memory issue width controls memory operation dispatch rate while RXQ entries manage network packet reception, representing independent subsystem parameters;
+4. (memIssueWidth, CPI): A: Memory issue width directly affects the processor's ability to execute memory operations in parallel, which influences overall instruction throughput and cycles per instruction;
+5. (memIssueWidth, memIssueWidth): C: A variable cannot have a causal relationship with itself;
+6. (memIssueWidth, nICacheWays): C: Memory issue width affects memory operation execution while instruction cache ways determine cache associativity, representing independent architectural parameters;
+7. (memIssueWidth, enableSFBOpt): C: Memory issue width is a hardware parameter while store-to-load forwarding optimization is a separate microarchitectural feature that can be enabled independently;
+8. (memIssueWidth, nDCacheTLBWays): C: Memory issue width controls execution throughput while data cache TLB associativity affects address translation, representing independent design parameters;
+9. (memIssueWidth, nL2TLBWays): C: Memory issue width affects execution pipeline throughput while L2 TLB associativity determines address translation capacity, representing independent architectural choices;
+10. (memIssueWidth, enablePrefetching): C: Memory issue width is a pipeline parameter while prefetching is an independent optimization technique that can be enabled regardless of issue width;
+11. (memIssueWidth, DCacheMiss): A: Memory issue width affects the rate at which memory operations are issued, which can influence data cache miss patterns through increased memory access pressure;
+12. (memIssueWidth, nDCacheMSHRs): C: Memory issue width controls execution throughput while MSHR entries manage outstanding cache misses, representing independent architectural parameters;
+13. (memIssueWidth, nL2TLBEntries): C: Memory issue width affects pipeline throughput while L2 TLB entries determine address translation capacity, representing independent design choices;
+14. (memIssueWidth, ICacheMiss): C: Memory issue width primarily affects data memory operations while instruction cache misses are related to instruction fetch patterns, representing largely independent phenomena;
+15. (memIssueWidth, numLdqEntries): A: Memory issue width directly affects how many load operations can be issued per cycle, which influences the required capacity of the load queue to buffer pending loads;
+16. (memIssueWidth, nDCacheWays): C: Memory issue width controls execution throughput while data cache associativity affects cache organization, representing independent architectural parameters;
+17. (memIssueWidth, numRCQEntries): C: Memory issue width affects memory operation dispatch while RCQ entries manage network response handling, representing independent subsystem parameters;
+18. (memIssueWidth, flush): A: Memory issue width affects the number of in-flight memory operations, which can influence pipeline flush frequency when memory ordering violations or exceptions occur;

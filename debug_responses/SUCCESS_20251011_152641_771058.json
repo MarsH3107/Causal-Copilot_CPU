@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 25,
+  "sample_result": {
+    "(fetchWidth, nL2TLBEntries)": {
+      "result": "C",
+      "explanation": "Fetch width determines how many instructions can be fetched per cycle, while L2 TLB entries affect address translation capacity - these are independent architectural parameters that don't directly influence each other;"
+    },
+    "(fetchWidth, ICacheMiss)": {
+      "result": "A",
+      "explanation": "Higher fetch width can increase instruction cache pressure by requesting more instructions per cycle, potentially leading to more cache misses when the cache cannot satisfy the increased demand;"
+    },
+    "(fetchWidth, numLdqEntries)": {
+      "result": "C",
+      "explanation": "Fetch width affects instruction fetching while load queue entries handle memory operations in the execution stage - these operate at different pipeline stages and don't directly influence each other;"
+    }
+  }
+}

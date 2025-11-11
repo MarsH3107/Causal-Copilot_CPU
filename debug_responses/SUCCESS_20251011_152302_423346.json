@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 4,
+  "sample_result": {
+    "(CPI, flush)": {
+      "result": "B",
+      "explanation": "Pipeline flush events directly increase the cycles per instruction because flushed instructions must be re-fetched and re-executed, adding extra cycles without completing useful work;"
+    },
+    "(CPI, CPI)": {
+      "result": "C",
+      "explanation": "This represents the same variable with itself, so there is no meaningful causal relationship to analyze;"
+    },
+    "(CPI, DCacheMiss)": {
+      "result": "B",
+      "explanation": "Data cache misses cause the processor to stall while waiting for data from slower memory levels, directly increasing the number of cycles required per instruction;"
+    }
+  }
+}

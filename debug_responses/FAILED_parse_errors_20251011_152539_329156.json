@@ -1,0 +1,52 @@
+{
+  "prompt_type": "cot_all_relation",
+  "retry_count": 1,
+  "total_lines": 12,
+  "successful_parses": 6,
+  "failed_parses": 6,
+  "errors": [
+    {
+      "line_number": 1,
+      "line_content": "(nDCacheMSHRs, nDCacheMSHRs): This is the same variable - no causal relationship with itself.",
+      "error_type": "ValueError",
+      "error_message": "Not enough ':' separators (found 1, need 2)",
+      "parts_count": 2
+    },
+    {
+      "line_number": 2,
+      "line_content": "(nDCacheMSHRs, ICacheMiss): MSHRs handle data cache misses, while ICacheMiss relates to instruction cache. These are independent cache subsystems.",
+      "error_type": "ValueError",
+      "error_message": "Not enough ':' separators (found 1, need 2)",
+      "parts_count": 2
+    },
+    {
+      "line_number": 3,
+      "line_content": "(nDCacheMSHRs, flush): More MSHRs can handle more outstanding misses, reducing pipeline stalls and flushes.",
+      "error_type": "ValueError",
+      "error_message": "Not enough ':' separators (found 1, need 2)",
+      "parts_count": 2
+    },
+    {
+      "line_number": 4,
+      "line_content": "(nDCacheMSHRs, CPI): More MSHRs reduce memory stall cycles, directly improving CPI.",
+      "error_type": "ValueError",
+      "error_message": "Not enough ':' separators (found 1, need 2)",
+      "parts_count": 2
+    },
+    {
+      "line_number": 5,
+      "line_content": "(nDCacheMSHRs, nDCacheTLBWays): Both are independent architectural parameters of the data cache subsystem.",
+      "error_type": "ValueError",
+      "error_message": "Not enough ':' separators (found 1, need 2)",
+      "parts_count": 2
+    },
+    {
+      "line_number": 6,
+      "line_content": "(nDCacheMSHRs, DCacheMiss): MSHRs handle the consequences of cache misses but don't cause or prevent the misses themselves.",
+      "error_type": "ValueError",
+      "error_message": "Not enough ':' separators (found 1, need 2)",
+      "parts_count": 2
+    }
+  ],
+  "expected_format": "(NodeA, NodeB): KEEP/REMOVE: explanation text"
+}

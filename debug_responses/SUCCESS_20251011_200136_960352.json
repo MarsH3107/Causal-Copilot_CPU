@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 18,
+  "sample_results": {
+    "(memIssueWidth, intIssueWidth)": {
+      "result": "C",
+      "explanation": "These are independent design parameters that are typically configured separately in processor architecture, with no direct causal relationship between memory and integer issue widths;"
+    },
+    "(memIssueWidth, nICacheTLBWays)": {
+      "result": "C",
+      "explanation": "Memory issue width and instruction cache TLB associativity are independent architectural design parameters that serve different functions in the processor pipeline;"
+    },
+    "(memIssueWidth, numRXQEntries)": {
+      "result": "C",
+      "explanation": "Memory issue width and the number of receive queue entries are independent design parameters that operate in different parts of the processor architecture;"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 14,
+  "sample_result": {
+    "(enableSFBOpt, DCacheMiss)": {
+      "result": "A",
+      "explanation": "EnableSFBOpt reduces data cache misses by allowing store-to-load forwarding, bypassing the need to access the data cache for certain memory operations;"
+    },
+    "(enableSFBOpt, nDCacheMSHRs)": {
+      "result": "C",
+      "explanation": "The number of data cache Miss Status Holding Registers is a fixed hardware configuration parameter that is independent of whether store-to-load forwarding optimization is enabled;"
+    },
+    "(enableSFBOpt, nL2TLBEntries)": {
+      "result": "C",
+      "explanation": "The number of L2 Translation Lookaside Buffer entries is a fixed hardware configuration that operates independently of store-to-load forwarding optimizations;"
+    }
+  }
+}

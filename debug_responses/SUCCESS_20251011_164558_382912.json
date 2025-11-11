@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 19,
+  "sample_results": {
+    "(numIntPhysRegisters, nICacheWays)": {
+      "result": "C",
+      "explanation": "The number of integer physical registers in the processor core and the associativity of the instruction cache are independent architectural parameters that operate in different subsystems without direct causal influence;"
+    },
+    "(numIntPhysRegisters, enableSFBOpt)": {
+      "result": "C",
+      "explanation": "Integer physical registers handle register renaming for execution units while store-to-load forwarding optimization is a memory subsystem feature, making these parameters architecturally independent;"
+    },
+    "(numIntPhysRegisters, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "Integer physical registers are part of the execution core's register file while data cache TLB associativity is a memory management unit parameter, operating independently in different processor subsystems;"
+    }
+  }
+}

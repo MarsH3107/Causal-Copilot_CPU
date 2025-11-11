@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 17,
+  "sample_results": {
+    "(intIssueWidth, DCacheMiss)": {
+      "result": "A",
+      "explanation": "Integer issue width determines how many integer instructions can be issued per cycle, and higher issue rates increase memory access frequency, which can lead to more data cache misses when the cache cannot satisfy the increased demand;"
+    },
+    "(intIssueWidth, enablePrefetching)": {
+      "result": "C",
+      "explanation": "Integer issue width is a microarchitectural parameter that affects instruction throughput, while prefetching is a cache optimization technique that operates independently of the integer execution pipeline width;"
+    },
+    "(intIssueWidth, nDCacheMSHRs)": {
+      "result": "C",
+      "explanation": "Integer issue width affects instruction dispatch rate while the number of data cache MSHRs is a cache subsystem design parameter that handles outstanding memory requests independently of integer pipeline width;"
+    }
+  }
+}

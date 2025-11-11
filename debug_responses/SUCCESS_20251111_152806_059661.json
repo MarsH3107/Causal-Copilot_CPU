@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 15,
+  "sample_results": {
+    "(cpi, power_memory)": {
+      "result": "A",
+      "explanation": "Higher CPI increases execution time and memory access patterns, directly affecting memory subsystem power consumption through increased activity;"
+    },
+    "(cpi, power)": {
+      "result": "A",
+      "explanation": "CPI directly influences overall execution time and processor activity levels, which determines total power consumption across all processor components;"
+    },
+    "(cpi, power_pad)": {
+      "result": "C",
+      "explanation": "CPI affects computational workload while pad power is primarily determined by I/O interface design and activity, with no direct causal relationship;"
+    }
+  }
+}

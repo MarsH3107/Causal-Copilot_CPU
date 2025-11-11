@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 5,
+  "sample_results": {
+    "(nDCacheTLBWays, CPI)": {
+      "result": "A",
+      "explanation": "Increasing the number of data cache TLB ways reduces TLB miss rates, which decreases memory access latency and directly improves processor performance by reducing cycles per instruction;"
+    },
+    "(nDCacheTLBWays, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "This represents a self-relationship where a variable cannot causally influence itself;"
+    },
+    "(nDCacheTLBWays, DCacheMiss)": {
+      "result": "C",
+      "explanation": "While TLB performance affects memory access patterns, the number of TLB ways does not directly cause data cache misses, which are primarily determined by data access patterns and cache size;"
+    }
+  }
+}

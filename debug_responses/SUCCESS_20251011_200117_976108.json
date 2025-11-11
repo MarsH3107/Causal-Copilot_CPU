@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 19,
+  "sample_results": {
+    "(numIntPhysRegisters, nICacheWays)": {
+      "result": "C",
+      "explanation": "The number of integer physical registers and instruction cache associativity are independent architectural parameters that serve different functions in the processor pipeline;"
+    },
+    "(numIntPhysRegisters, enableSFBOpt)": {
+      "result": "C",
+      "explanation": "Store forwarding buffer optimization is a memory subsystem feature that operates independently of the integer register file size;"
+    },
+    "(numIntPhysRegisters, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "Data cache TLB associativity and integer register file size are independent architectural parameters serving different pipeline stages;"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 11,
+  "sample_result": {
+    "(nL2TLBEntries, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "These are independent architectural design parameters where the number of L2 TLB entries and the associativity of data cache TLB are separate configuration choices that don't directly influence each other;"
+    },
+    "(nL2TLBEntries, nL2TLBWays)": {
+      "result": "C",
+      "explanation": "Both parameters configure different aspects of the same L2 TLB structure but are independent design choices where entry count and associativity are set separately without direct causal relationship;"
+    },
+    "(nL2TLBEntries, DCacheMiss)": {
+      "result": "A",
+      "explanation": "Increasing L2 TLB entries reduces translation misses which can indirectly affect data cache performance by reducing the overhead of address translation during memory accesses;"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 25,
+  "sample_results": {
+    "(fetchWidth, nL2TLBEntries)": {
+      "result": "C",
+      "explanation": "Fetch width determines instruction fetch bandwidth while L2 TLB entries affect address translation capacity - these are independent architectural parameters;"
+    },
+    "(fetchWidth, ICacheMiss)": {
+      "result": "A",
+      "explanation": "Higher fetch width increases instruction demand which can lead to more instruction cache misses when the cache cannot satisfy the increased bandwidth requirements;"
+    },
+    "(fetchWidth, numLdqEntries)": {
+      "result": "C",
+      "explanation": "Fetch width affects instruction fetch rate while load queue entries determine load instruction buffering capacity - these are independent design parameters;"
+    }
+  }
+}

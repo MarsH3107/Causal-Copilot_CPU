@@ -1,0 +1,22 @@
+Filtered lines (starting with '('): 20
+================================================================================
+1. (numRobEntries, nL2TLBEntries): C: The number of reorder buffer entries and L2 TLB entries are independent architectural parameters that serve different functions in the processor pipeline and do not directly influence each other;
+2. (numRobEntries, ICacheMiss): A: A larger reorder buffer allows more instructions to be in flight simultaneously, which can help hide instruction cache miss latencies by continuing execution of other instructions while cache misses are resolved;
+3. (numRobEntries, numLdqEntries): C: Both are independent buffer sizing parameters in the processor design where the reorder buffer handles instruction completion order while the load queue manages memory load operations;
+4. (numRobEntries, nDCacheWays): C: The number of reorder buffer entries and data cache associativity are independent architectural design parameters that do not directly influence each other;
+5. (numRobEntries, numRCQEntries): C: Reorder buffer entries and request completion queue entries are independent buffer configurations serving different stages of the processor pipeline;
+6. (numRobEntries, flush): B: Pipeline flushes caused by branch mispredictions or exceptions directly affect how many reorder buffer entries are invalidated and cleared;
+7. (numRobEntries, intIssueWidth): C: These are independent architectural parameters where reorder buffer size and integer issue width serve different functions in the processor pipeline design;
+8. (numRobEntries, nICacheTLBWays): C: The number of reorder buffer entries and instruction cache TLB associativity are independent architectural parameters serving different processor subsystems;
+9. (numRobEntries, numRXQEntries): C: Reorder buffer entries and request transmit queue entries are independent buffer configurations for different parts of the processor pipeline;
+10. (numRobEntries, CPI): A: A larger reorder buffer enables more instruction-level parallelism by allowing more instructions to execute out-of-order, which can reduce cycles per instruction;
+11. (numRobEntries, memIssueWidth): C: The number of reorder buffer entries and memory issue width are independent architectural design parameters that do not directly cause changes in each other;
+12. (numRobEntries, nICacheWays): C: Reorder buffer size and instruction cache associativity are independent architectural parameters that serve different functions in the processor design;
+13. (numRobEntries, enableSFBOpt): C: The number of reorder buffer entries and store-to-load forwarding optimization are independent architectural features that do not directly influence each other;
+14. (numRobEntries, nDCacheTLBWays): C: Reorder buffer size and data cache TLB associativity are independent architectural parameters serving different processor subsystems;
+15. (numRobEntries, numIntPhysRegisters): C: Both are independent resource allocation parameters in processor design where reorder buffer manages instruction completion while physical registers handle data storage;
+16. (numRobEntries, nL2TLBWays): C: The number of reorder buffer entries and L2 TLB associativity are independent architectural parameters that serve different functions in the memory hierarchy;
+17. (numRobEntries, DCacheMiss): A: A larger reorder buffer can help hide data cache miss latencies by allowing continued execution of independent instructions while cache misses are being resolved;
+18. (numRobEntries, enablePrefetching): C: The number of reorder buffer entries and prefetching enablement are independent architectural features that do not directly cause changes in each other;
+19. (numRobEntries, nDCacheMSHRs): C: Reorder buffer size and data cache miss status holding registers are independent architectural parameters serving different aspects of the memory subsystem;
+20. (numRobEntries, numRobEntries): C: A variable cannot have a causal relationship with itself as this would be circular reasoning

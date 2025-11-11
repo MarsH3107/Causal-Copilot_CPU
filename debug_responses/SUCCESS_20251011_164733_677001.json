@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 8,
+  "sample_results": {
+    "(nICacheTLBWays, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "These are independent architectural parameters that configure separate TLB structures for instruction and data caches respectively, with no direct causal relationship between their configurations;"
+    },
+    "(nICacheTLBWays, DCacheMiss)": {
+      "result": "C",
+      "explanation": "The number of ways in the instruction cache TLB affects instruction address translation efficiency but does not directly influence data cache miss behavior, as they operate on different memory access patterns;"
+    },
+    "(nICacheTLBWays, nDCacheMSHRs)": {
+      "result": "C",
+      "explanation": "Instruction cache TLB associativity and data cache miss status holding registers are independent architectural components that serve different functions in the memory hierarchy;"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 3,
+  "sample_result": {
+    "(flush, DCacheMiss)": {
+      "result": "B",
+      "explanation": "Data cache misses cause pipeline flushes because when the processor cannot retrieve required data from the cache, it must stall the pipeline and potentially flush instructions that depend on that data;"
+    },
+    "(flush, ICacheMiss)": {
+      "result": "B",
+      "explanation": "Instruction cache misses cause pipeline flushes because when the processor cannot fetch the next instruction from the cache, it must stall and flush the pipeline until the instruction is retrieved from memory;"
+    },
+    "(flush, flush)": {
+      "result": "C",
+      "explanation": "A variable cannot have a causal relationship with itself as they represent the same measurement"
+    }
+  }
+}

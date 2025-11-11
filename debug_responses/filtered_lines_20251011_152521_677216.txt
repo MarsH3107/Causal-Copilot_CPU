@@ -1,0 +1,14 @@
+Filtered lines (starting with '('): 12
+================================================================================
+1. (nDCacheMSHRs, nDCacheMSHRs): This is the same variable - no causal relationship with itself.
+2. (nDCacheMSHRs, ICacheMiss): MSHRs handle data cache misses, while ICacheMiss relates to instruction cache. These are independent cache subsystems.
+3. (nDCacheMSHRs, flush): More MSHRs can reduce pipeline stalls from data cache misses, potentially reducing flush events.
+4. (nDCacheMSHRs, CPI): More MSHRs allow better handling of data cache misses, reducing stall cycles and improving CPI.
+5. (nDCacheMSHRs, nDCacheTLBWays): Both are independent hardware configuration parameters for different cache subsystems.
+6. (nDCacheMSHRs, DCacheMiss): MSHRs handle the consequences of cache misses but don't prevent them from occurring.
+7. (nDCacheMSHRs, nDCacheMSHRs): C: A variable cannot have a causal relationship with itself as it represents the same hardware parameter;
+8. (nDCacheMSHRs, ICacheMiss): C: Data cache MSHRs and instruction cache misses operate in independent cache subsystems with no direct causal relationship;
+9. (nDCacheMSHRs, flush): A: More data cache MSHRs reduce pipeline stalls from data cache misses, which can decrease the frequency of pipeline flush events;
+10. (nDCacheMSHRs, CPI): A: Increasing the number of data cache MSHRs improves the processor's ability to handle multiple outstanding cache misses, reducing stall cycles and improving CPI;
+11. (nDCacheMSHRs, nDCacheTLBWays): C: These represent independent hardware configuration parameters for different components of the data cache subsystem;
+12. (nDCacheMSHRs, DCacheMiss): C: MSHRs manage the handling of cache misses after they occur but do not influence the actual occurrence of data cache misses

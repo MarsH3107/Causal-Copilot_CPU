@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 3,
+  "sample_results": {
+    "(flush, DCacheMiss)": {
+      "result": "B",
+      "explanation": "Data cache misses can trigger pipeline flushes in certain processor architectures when the miss handling requires clearing speculative execution state;"
+    },
+    "(flush, ICacheMiss)": {
+      "result": "B",
+      "explanation": "Instruction cache misses typically cause pipeline flushes because the processor cannot continue fetching instructions and must restart the pipeline once the missing instructions are retrieved;"
+    },
+    "(flush, flush)": {
+      "result": "C",
+      "explanation": "This represents the same variable with itself, so there is no meaningful causal relationship to analyze;"
+    }
+  }
+}

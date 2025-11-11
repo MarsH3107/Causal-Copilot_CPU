@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 15,
+  "sample_results": {
+    "(cpi, power_memory)": {
+      "result": "C",
+      "explanation": "CPI and memory power consumption are both outcomes of architectural design choices but CPI does not directly cause changes in memory power consumption;"
+    },
+    "(cpi, power)": {
+      "result": "C",
+      "explanation": "CPI is a performance metric while total power consumption is a physical characteristic, both determined by underlying architectural parameters rather than one causing the other;"
+    },
+    "(cpi, power_pad)": {
+      "result": "C",
+      "explanation": "CPI performance metric does not directly influence pad power consumption, as both are independent outcomes of processor design decisions;"
+    }
+  }
+}

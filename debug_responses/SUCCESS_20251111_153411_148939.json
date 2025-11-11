@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 33,
+  "sample_results": {
+    "(maxBrCount, power_logic)": {
+      "result": "A",
+      "explanation": "Higher maximum branch count requires more complex branch prediction logic and control circuits, directly increasing the power consumption of logic components;"
+    },
+    "(maxBrCount, power_leakage)": {
+      "result": "A",
+      "explanation": "Increased branch prediction complexity requires additional transistors and larger circuit structures, which directly increases static leakage power consumption;"
+    },
+    "(maxBrCount, area_cell_area)": {
+      "result": "A",
+      "explanation": "Supporting higher maximum branch counts necessitates larger branch prediction tables and more complex control logic, directly increasing the physical area occupied by cells;"
+    }
+  }
+}

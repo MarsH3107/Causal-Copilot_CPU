@@ -1,0 +1,4 @@
+Filtered lines (starting with '('): 2
+================================================================================
+1. (ICacheMiss, DCacheMiss): C: Instruction cache misses and data cache misses are independent events that occur due to different memory access patterns and do not directly cause each other;
+2. (ICacheMiss, ICacheMiss): C: A variable cannot have a causal relationship with itself as this would be a tautological relationship rather than a meaningful causal connection;

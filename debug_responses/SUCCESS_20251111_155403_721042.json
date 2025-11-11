@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 19,
+  "sample_results": {
+    "(nICacheTLBWays, power_internal)": {
+      "result": "A",
+      "explanation": "Increasing instruction cache TLB associativity requires additional comparators and selection logic, which directly increases internal power consumption of the TLB structure;"
+    },
+    "(nICacheTLBWays, area_net_area)": {
+      "result": "A",
+      "explanation": "Higher TLB associativity necessitates more interconnect wiring between additional comparison units and selection logic, directly increasing the net area for routing;"
+    },
+    "(nICacheTLBWays, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "The associativity of instruction cache TLB and data cache TLB are independent microarchitectural design parameters that do not causally influence each other;"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 30,
+  "sample_results": {
+    "(numIntPhysRegisters, nICacheWays)": {
+      "result": "C",
+      "explanation": "The number of integer physical registers and instruction cache associativity are independent architectural parameters that serve different functions in the processor pipeline;"
+    },
+    "(numIntPhysRegisters, power_internal)": {
+      "result": "A",
+      "explanation": "Increasing the number of integer physical registers directly increases internal power consumption due to additional register file circuitry and access operations;"
+    },
+    "(numIntPhysRegisters, area_net_area)": {
+      "result": "A",
+      "explanation": "More integer physical registers require additional interconnect routing between registers and functional units, directly increasing the net area for wiring;"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 10,
+  "sample_results": {
+    "(nL2TLBWays, nICacheTLBWays)": {
+      "result": "C",
+      "explanation": "These are independent hardware configuration parameters for different TLB structures that do not directly influence each other's design or operation;"
+    },
+    "(nL2TLBWays, CPI)": {
+      "result": "A",
+      "explanation": "Increasing L2 TLB associativity reduces TLB miss rates which decreases memory access latency and subsequently improves cycles per instruction performance;"
+    },
+    "(nL2TLBWays, nICacheWays)": {
+      "result": "C",
+      "explanation": "These are independent cache configuration parameters that operate on different levels of the memory hierarchy without direct causal influence on each other;"
+    }
+  }
+}

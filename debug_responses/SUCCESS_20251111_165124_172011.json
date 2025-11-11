@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 19,
+  "sample_results": {
+    "(nICacheTLBWays, power_internal)": {
+      "result": "A",
+      "explanation": "Increasing the number of ways in the instruction cache TLB increases the complexity of the associative lookup hardware, which directly increases internal power consumption due to more complex circuitry and switching activity;"
+    },
+    "(nICacheTLBWays, area_net_area)": {
+      "result": "A",
+      "explanation": "Higher associativity in the instruction cache TLB requires more complex routing and interconnect structures to support the additional ways, directly increasing the net area required for wiring;"
+    },
+    "(nICacheTLBWays, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "The number of ways in the instruction cache TLB and data cache TLB are independent architectural design parameters that can be configured separately without direct causal relationship;"
+    }
+  }
+}

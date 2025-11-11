@@ -1,0 +1,25 @@
+Filtered lines (starting with '('): 23
+================================================================================
+1. (numRasEntries, numRobEntries): C: The Return Address Stack and Reorder Buffer serve different functions in the processor pipeline and their sizing decisions are independent architectural parameters;
+2. (numRasEntries, nL2TLBEntries): C: The Return Address Stack for function call prediction and L2 TLB for address translation are independent microarchitectural components with separate sizing considerations;
+3. (numRasEntries, ICacheMiss): A: A larger Return Address Stack improves function return address prediction accuracy, reducing mispredictions that can lead to instruction cache misses when fetching from incorrect addresses;
+4. (numRasEntries, numLdqEntries): C: The Return Address Stack for branch prediction and Load Queue for memory operations are independent processor components with separate design requirements;
+5. (numRasEntries, nDCacheWays): C: Return Address Stack sizing and data cache associativity are independent architectural parameters serving different processor functions;
+6. (numRasEntries, decodeWidth): C: The Return Address Stack size and instruction decode width are independent microarchitectural parameters that don't directly influence each other;
+7. (numRasEntries, numRCQEntries): C: Return Address Stack entries and Request Completion Queue entries serve different processor functions and are sized independently;
+8. (numRasEntries, flush): A: A larger Return Address Stack reduces return address mispredictions, which decreases the frequency of pipeline flushes caused by incorrect control flow predictions;
+9. (numRasEntries, intIssueWidth): C: Return Address Stack size and integer issue width are independent microarchitectural parameters serving different pipeline functions;
+10. (numRasEntries, nICacheTLBWays): C: The Return Address Stack for function return prediction and instruction cache TLB associativity are independent architectural components;
+11. (numRasEntries, maxBrCount): C: Return Address Stack size and maximum branch count are independent parameters in branch prediction and processor configuration;
+12. (numRasEntries, numRXQEntries): C: Return Address Stack entries and Request Queue entries serve different processor subsystems and are sized independently;
+13. (numRasEntries, CPI): A: A larger Return Address Stack improves return address prediction accuracy, reducing misprediction penalties and thereby decreasing cycles per instruction;
+14. (numRasEntries, memIssueWidth): C: Return Address Stack size and memory issue width are independent microarchitectural parameters serving different processor functions;
+15. (numRasEntries, nICacheWays): C: Return Address Stack sizing and instruction cache associativity are independent architectural decisions that don't directly influence each other;
+16. (numRasEntries, numRasEntries): D: A variable cannot have a causal relationship with itself as this would be circular reasoning;
+17. (numRasEntries, enableSFBOpt): C: Return Address Stack size and Store-to-Load Forwarding optimization are independent microarchitectural features serving different purposes;
+18. (numRasEntries, nDCacheTLBWays): C: Return Address Stack entries and data cache TLB associativity are independent components serving different processor functions;
+19. (numRasEntries, numIntPhysRegisters): C: Return Address Stack size and integer physical register count are independent microarchitectural parameters serving different pipeline stages;
+20. (numRasEntries, nL2TLBWays): C: Return Address Stack sizing and L2 TLB associativity are independent architectural parameters serving different processor subsystems;
+21. (numRasEntries, DCacheMiss): C: Return Address Stack primarily affects control flow prediction while data cache misses are related to data access patterns, making them largely independent;
+22. (numRasEntries, enablePrefetching): C: Return Address Stack size and prefetching enablement are independent microarchitectural features serving different performance optimization purposes;
+23. (numRasEntries, nDCacheMSHRs): C: Return Address Stack entries and data cache Miss Status Holding Registers serve different processor functions and are sized independently

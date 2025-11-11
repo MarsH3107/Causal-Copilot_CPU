@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 11,
+  "sample_results": {
+    "(power_internal, power_logic)": {
+      "result": "B",
+      "explanation": "Power_logic is a component that contributes to the total internal power consumption of a processor, making logic power a constituent part of internal power;"
+    },
+    "(power_internal, area_cell_area)": {
+      "result": "C",
+      "explanation": "Cell area is a physical design metric that doesn't directly cause or result from internal power consumption, though both may be influenced by design choices;"
+    },
+    "(power_internal, power_register)": {
+      "result": "B",
+      "explanation": "Register power consumption is a specific component that contributes to the overall internal power consumption of the processor;"
+    }
+  }
+}

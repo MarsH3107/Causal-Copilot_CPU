@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 37,
+  "sample_results": {
+    "(BranchPredictor, decodeWidth)": {
+      "result": "C",
+      "explanation": "Branch predictor and decode width are independent architectural parameters that operate at different pipeline stages and do not directly influence each other;"
+    },
+    "(BranchPredictor, numRCQEntries)": {
+      "result": "C",
+      "explanation": "Branch predictor functionality and the number of reorder completion queue entries are independent design parameters that serve different purposes in the processor pipeline;"
+    },
+    "(BranchPredictor, power)": {
+      "result": "A",
+      "explanation": "Branch predictor complexity and accuracy directly affect power consumption through increased transistor count, switching activity, and prediction table accesses;"
+    }
+  }
+}

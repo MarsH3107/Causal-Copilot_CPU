@@ -1,0 +1,28 @@
+Filtered lines (starting with '('): 26
+================================================================================
+1. (BranchPredictor, decodeWidth): C: Branch predictor accuracy and decode width are independent architectural parameters that operate at different pipeline stages and do not directly influence each other's configuration;
+2. (BranchPredictor, numRCQEntries): C: Branch predictor mechanisms and the number of request completion queue entries are independent design parameters that serve different functions in the processor pipeline;
+3. (BranchPredictor, flush): A: Branch mispredictions directly cause pipeline flushes as the processor must discard incorrectly fetched and decoded instructions when the actual branch outcome differs from the prediction;
+4. (BranchPredictor, BranchPredictor): C: A node cannot have a causal relationship with itself as this would be circular and meaningless in causal analysis;
+5. (BranchPredictor, intIssueWidth): C: Branch predictor accuracy and integer issue width are independent architectural parameters that operate at different pipeline stages without direct causal influence;
+6. (BranchPredictor, nICacheTLBWays): C: Branch predictor design and instruction cache TLB associativity are independent architectural parameters that serve different functions in the memory hierarchy;
+7. (BranchPredictor, maxBrCount): C: Branch predictor accuracy and maximum branch count limits are independent parameters where the predictor responds to branches rather than determining their quantity;
+8. (BranchPredictor, numRXQEntries): C: Branch predictor mechanisms and the number of request queue entries are independent design parameters that operate in different subsystems of the processor;
+9. (BranchPredictor, CPI): A: Branch mispredictions directly increase cycles per instruction by causing pipeline stalls and flushes that waste computational cycles;
+10. (BranchPredictor, memIssueWidth): C: Branch predictor accuracy and memory issue width are independent architectural parameters that operate at different pipeline stages without direct causal influence;
+11. (BranchPredictor, nICacheWays): C: Branch predictor design and instruction cache associativity are independent architectural parameters that serve different functions in the processor;
+12. (BranchPredictor, numRasEntries): C: Branch predictor accuracy and return address stack size are independent parameters, though both relate to branch handling, they don't directly influence each other's configuration;
+13. (BranchPredictor, enableSFBOpt): C: Branch predictor mechanisms and store-to-load forwarding optimizations are independent features that operate in different parts of the processor pipeline;
+14. (BranchPredictor, nDCacheTLBWays): C: Branch predictor design and data cache TLB associativity are independent architectural parameters that serve completely different functions in the processor;
+15. (BranchPredictor, numIntPhysRegisters): C: Branch predictor accuracy and the number of integer physical registers are independent architectural parameters that serve different functions in instruction execution;
+16. (BranchPredictor, nL2TLBWays): C: Branch predictor mechanisms and L2 TLB associativity are independent design parameters that operate in different subsystems of the processor;
+17. (BranchPredictor, numFetchBufferEntries): C: Branch predictor accuracy and fetch buffer size are independent parameters that operate at different stages of the instruction pipeline;
+18. (BranchPredictor, DCacheMiss): C: Branch predictor accuracy and data cache miss rates are independent metrics that relate to different aspects of processor performance;
+19. (BranchPredictor, enablePrefetching): C: Branch predictor mechanisms and data prefetching optimizations are independent features that operate in different parts of the memory hierarchy;
+20. (BranchPredictor, nDCacheMSHRs): C: Branch predictor design and data cache miss status holding registers are independent architectural parameters serving different functions;
+21. (BranchPredictor, numRobEntries): C: Branch predictor accuracy and reorder buffer size are independent architectural parameters that operate at different stages of the processor pipeline;
+22. (BranchPredictor, nL2TLBEntries): C: Branch predictor mechanisms and L2 TLB size are independent design parameters that serve different functions in the processor;
+23. (BranchPredictor, ICacheMiss): A: Branch mispredictions can indirectly increase instruction cache misses by causing fetches from unexpected code paths that may not be cached;
+24. (BranchPredictor, fetchWidth): C: Branch predictor accuracy and instruction fetch width are independent architectural parameters that operate at different aspects of the fetch stage;
+25. (BranchPredictor, numLdqEntries): C: Branch predictor mechanisms and load queue size are independent design parameters that operate in different parts of the processor pipeline;
+26. (BranchPredictor, nDCacheWays): C: Branch predictor design and data cache associativity are independent architectural parameters that serve completely different functions in the processor

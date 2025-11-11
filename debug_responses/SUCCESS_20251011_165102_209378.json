@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 22,
+  "sample_results": {
+    "(maxBrCount, DCacheMiss)": {
+      "result": "C",
+      "explanation": "Maximum branch count is a branch predictor configuration parameter that does not directly influence data cache miss behavior, as these operate in different pipeline stages with distinct functions;"
+    },
+    "(maxBrCount, enablePrefetching)": {
+      "result": "C",
+      "explanation": "Maximum branch count is a branch predictor parameter while prefetching is a memory subsystem optimization technique, and these operate independently without direct causal relationship;"
+    },
+    "(maxBrCount, nDCacheMSHRs)": {
+      "result": "C",
+      "explanation": "Maximum branch count affects branch prediction accuracy while the number of data cache MSHRs determines memory request handling capacity, operating in different processor subsystems without direct causation;"
+    }
+  }
+}

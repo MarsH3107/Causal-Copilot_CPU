@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 10,
+  "sample_results": {
+    "(nL2TLBWays, nICacheTLBWays)": {
+      "result": "C",
+      "explanation": "These are independent cache configuration parameters that operate at different levels of the memory hierarchy and do not directly influence each other's design or operation;"
+    },
+    "(nL2TLBWays, CPI)": {
+      "result": "A",
+      "explanation": "Increasing the number of L2 TLB ways reduces TLB miss rates by improving address translation hit rates, which directly decreases memory access latency and thus reduces cycles per instruction;"
+    },
+    "(nL2TLBWays, nICacheWays)": {
+      "result": "C",
+      "explanation": "L2 TLB associativity and instruction cache associativity are independent architectural parameters that serve different functions in the memory hierarchy without direct causal relationship;"
+    }
+  }
+}

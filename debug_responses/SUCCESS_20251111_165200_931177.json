@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 29,
+  "sample_results": {
+    "(memIssueWidth, intIssueWidth)": {
+      "result": "C",
+      "explanation": "Memory issue width and integer issue width are independent design parameters that can be configured separately without one directly causing changes in the other;"
+    },
+    "(memIssueWidth, nICacheTLBWays)": {
+      "result": "C",
+      "explanation": "Memory issue width affects memory operations while instruction cache TLB ways affect instruction fetch, making them independent architectural parameters;"
+    },
+    "(memIssueWidth, power_pad)": {
+      "result": "C",
+      "explanation": "Memory issue width primarily affects execution unit power consumption, while pad power is related to I/O interface design and remains largely independent;"
+    }
+  }
+}

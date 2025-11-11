@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 6,
+  "sample_result": {
+    "(nDCacheMSHRs, nDCacheMSHRs)": {
+      "result": "C",
+      "explanation": "A variable cannot have a causal relationship with itself as this would be logically inconsistent and meaningless in any causal analysis;"
+    },
+    "(nDCacheMSHRs, ICacheMiss)": {
+      "result": "C",
+      "explanation": "The number of data cache MSHRs is a hardware configuration parameter for data cache miss handling, while instruction cache misses are independent events related to instruction fetching that do not directly influence each other;"
+    },
+    "(nDCacheMSHRs, flush)": {
+      "result": "C",
+      "explanation": "The number of data cache MSHRs is a static hardware configuration parameter that determines miss handling capacity, while pipeline flushes are dynamic events triggered by control flow changes or hazards, with no direct causal relationship;"
+    }
+  }
+}

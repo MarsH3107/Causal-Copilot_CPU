@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 5,
+  "sample_result": {
+    "(nDCacheTLBWays, CPI)": {
+      "result": "A",
+      "explanation": "Increasing the number of ways in the data cache TLB reduces TLB miss rates and memory access latency, which directly decreases the cycles per instruction by improving memory system performance;"
+    },
+    "(nDCacheTLBWays, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "A variable cannot have a causal relationship with itself as this would be logically inconsistent and meaningless in any causal analysis;"
+    },
+    "(nDCacheTLBWays, DCacheMiss)": {
+      "result": "A",
+      "explanation": "Higher associativity in the data cache TLB reduces TLB conflicts and improves virtual-to-physical address translation efficiency, which can reduce data cache miss rates by enabling more effective memory access patterns;"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 6,
+  "sample_results": {
+    "(nDCacheMSHRs, nDCacheMSHRs)": {
+      "result": "C",
+      "explanation": "A variable cannot have a causal relationship with itself as it represents the same architectural parameter;"
+    },
+    "(nDCacheMSHRs, ICacheMiss)": {
+      "result": "C",
+      "explanation": "The number of data cache MSHRs and instruction cache misses operate in independent cache subsystems with no direct causal relationship;"
+    },
+    "(nDCacheMSHRs, flush)": {
+      "result": "C",
+      "explanation": "The number of data cache MSHRs does not directly cause pipeline flushes, as flushes are typically triggered by control flow changes or exceptions;"
+    }
+  }
+}

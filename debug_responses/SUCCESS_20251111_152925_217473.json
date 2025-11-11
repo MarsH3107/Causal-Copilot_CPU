@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 20,
+  "sample_results": {
+    "(nICacheWays, power_leakage)": {
+      "result": "A",
+      "explanation": "Increasing the number of instruction cache ways requires additional transistors and memory cells, which directly increases static power consumption through leakage currents;"
+    },
+    "(nICacheWays, area_cell_area)": {
+      "result": "A",
+      "explanation": "More instruction cache ways necessitate additional memory cells and associated circuitry, directly increasing the total cell area on the chip;"
+    },
+    "(nICacheWays, nDCacheMSHRs)": {
+      "result": "C",
+      "explanation": "The number of instruction cache ways and data cache miss status holding registers are independent design parameters that serve different functions in the memory hierarchy;"
+    }
+  }
+}

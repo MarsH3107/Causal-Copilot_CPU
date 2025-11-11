@@ -1,0 +1,15 @@
+Filtered lines (starting with '('): 13
+================================================================================
+1. (numRXQEntries, numRXQEntries): C: A variable cannot cause itself as this would be circular and logically impossible;
+2. (numRXQEntries, CPI): A: Increasing the number of RXQ entries allows more memory requests to be buffered, reducing memory-related stalls and improving instruction throughput, thereby decreasing CPI;
+3. (numRXQEntries, nICacheWays): C: RXQ entries are part of the memory subsystem while instruction cache associativity is a separate cache design parameter with no direct causal relationship;
+4. (numRXQEntries, nDCacheTLBWays): C: RXQ buffer size and data cache TLB associativity are independent hardware configuration parameters that do not directly influence each other;
+5. (numRXQEntries, nL2TLBWays): C: The number of RXQ entries and L2 TLB associativity are separate hardware design parameters with no direct causal relationship;
+6. (numRXQEntries, DCacheMiss): A: More RXQ entries can buffer additional memory requests and improve memory access scheduling, potentially reducing data cache miss penalties and overall miss rates;
+7. (numRXQEntries, nDCacheMSHRs): C: RXQ entries and MSHR count are both memory subsystem buffers but serve different purposes and are typically configured independently;
+8. (numRXQEntries, nL2TLBEntries): C: RXQ buffer capacity and L2 TLB size are independent hardware configuration parameters that do not causally influence each other;
+9. (numRXQEntries, ICacheMiss): C: RXQ entries primarily handle memory requests while instruction cache misses are related to instruction fetch patterns, with no direct causal relationship;
+10. (numRXQEntries, nDCacheWays): C: RXQ buffer size and data cache associativity are independent hardware design parameters that do not directly influence each other;
+11. (numRXQEntries, numRCQEntries): C: RXQ and RCQ are separate queue structures in the memory subsystem that are typically sized independently based on different design considerations;
+12. (numRXQEntries, flush): A: More RXQ entries can reduce memory-related pipeline stalls by better buffering memory requests, potentially decreasing the frequency of pipeline flushes;
+13. (numRXQEntries, nICacheTLBWays): C: RXQ buffer capacity and instruction cache TLB associativity are independent hardware configuration parameters with no direct causal relationship

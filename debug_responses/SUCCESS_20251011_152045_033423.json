@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 19,
+  "sample_result": {
+    "(numIntPhysRegisters, nICacheWays)": {
+      "result": "C",
+      "explanation": "The number of integer physical registers in the processor core and the associativity of the instruction cache are independent architectural parameters that serve different functions and do not directly influence each other;"
+    },
+    "(numIntPhysRegisters, enableSFBOpt)": {
+      "result": "C",
+      "explanation": "The number of integer physical registers and the store-forwarding bypass optimization are independent features that operate in different parts of the processor pipeline without direct causal relationship;"
+    },
+    "(numIntPhysRegisters, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "Integer physical registers are part of the execution core while data cache TLB associativity is a memory subsystem parameter, making them independent architectural choices;"
+    }
+  }
+}

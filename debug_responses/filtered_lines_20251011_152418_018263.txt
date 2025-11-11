@@ -1,0 +1,19 @@
+Filtered lines (starting with '('): 17
+================================================================================
+1. (intIssueWidth, DCacheMiss): A: Integer issue width determines how many integer instructions can be issued per cycle, and higher issue widths can generate more memory requests that may exceed cache capacity, leading to increased data cache misses;
+2. (intIssueWidth, enablePrefetching): C: Integer issue width is a hardware execution parameter while prefetching enablement is a separate cache optimization feature that operates independently of instruction issue capabilities;
+3. (intIssueWidth, nDCacheMSHRs): C: Integer issue width affects instruction throughput while the number of data cache Miss Status Holding Registers is a fixed hardware resource allocation that doesn't change based on issue width;
+4. (intIssueWidth, nL2TLBEntries): C: Integer issue width controls instruction dispatch rate while L2 TLB entries represent a fixed hardware resource for address translation that operates independently;
+5. (intIssueWidth, ICacheMiss): A: Higher integer issue width increases instruction fetch demand per cycle, which can exceed instruction cache capacity and lead to more instruction cache misses;
+6. (intIssueWidth, numLdqEntries): C: Integer issue width determines instruction dispatch capability while load queue entries represent a fixed hardware buffer size that doesn't change based on issue width;
+7. (intIssueWidth, nDCacheWays): C: Integer issue width affects instruction throughput while data cache associativity is a fixed architectural parameter that operates independently of issue capabilities;
+8. (intIssueWidth, numRCQEntries): C: Integer issue width controls instruction dispatch while the number of request completion queue entries is a fixed hardware resource that doesn't vary with issue width;
+9. (intIssueWidth, intIssueWidth): C: A variable cannot have a causal relationship with itself as this would be circular and logically invalid;
+10. (intIssueWidth, flush): A: Higher integer issue width can lead to more speculative execution and deeper pipelines, increasing the likelihood and cost of pipeline flushes when mispredictions occur;
+11. (intIssueWidth, nICacheTLBWays): C: Integer issue width affects instruction dispatch rate while instruction cache TLB associativity is a fixed hardware parameter that operates independently;
+12. (intIssueWidth, numRXQEntries): C: Integer issue width determines instruction throughput while the number of request transmit queue entries is a fixed hardware resource allocation;
+13. (intIssueWidth, CPI): A: Integer issue width directly affects instruction-level parallelism and execution efficiency, with higher issue widths typically reducing cycles per instruction through better utilization;
+14. (intIssueWidth, nICacheWays): C: Integer issue width controls instruction dispatch capability while instruction cache associativity is a fixed architectural design parameter;
+15. (intIssueWidth, enableSFBOpt): C: Integer issue width affects instruction execution while store-to-load forwarding optimization is an independent feature that operates regardless of issue width;
+16. (intIssueWidth, nDCacheTLBWays): C: Integer issue width determines instruction throughput while data cache TLB associativity is a fixed hardware parameter that doesn't change with issue capabilities;
+17. (intIssueWidth, nL2TLBWays): C: Integer issue width affects instruction dispatch while L2 TLB associativity is a fixed hardware design parameter that operates independently of issue width

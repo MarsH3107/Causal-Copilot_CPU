@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 21,
+  "sample_results": {
+    "(nL2TLBWays, power_pad)": {
+      "result": "C",
+      "explanation": "The number of ways in L2 TLB affects internal cache organization but has no direct relationship to pad power consumption, which is primarily determined by I/O interface design;"
+    },
+    "(nL2TLBWays, nICacheTLBWays)": {
+      "result": "C",
+      "explanation": "These are independent cache design parameters for different cache levels and have no direct causal relationship with each other;"
+    },
+    "(nL2TLBWays, power_switching)": {
+      "result": "A",
+      "explanation": "Increasing the number of ways in L2 TLB requires more complex selection logic and multiplexers, which increases switching activity and dynamic power consumption;"
+    }
+  }
+}

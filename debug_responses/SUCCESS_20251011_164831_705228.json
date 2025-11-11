@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 9,
+  "sample_results": {
+    "(nICacheWays, DCacheMiss)": {
+      "result": "C",
+      "explanation": "Instruction cache associativity and data cache misses operate on different memory hierarchies and do not directly influence each other;"
+    },
+    "(nICacheWays, nDCacheMSHRs)": {
+      "result": "C",
+      "explanation": "Instruction cache associativity and data cache MSHR configuration are independent architectural parameters that do not causally affect each other;"
+    },
+    "(nICacheWays, ICacheMiss)": {
+      "result": "A",
+      "explanation": "Higher instruction cache associativity reduces conflict misses by providing more placement options for cache lines, thereby decreasing the frequency of instruction cache misses;"
+    }
+  }
+}

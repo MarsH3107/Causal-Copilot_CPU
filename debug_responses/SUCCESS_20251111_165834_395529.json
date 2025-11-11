@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 36,
+  "sample_results": {
+    "(fetchWidth, area_cell_area)": {
+      "result": "A",
+      "explanation": "Increasing fetch width requires wider instruction fetch units and larger multiplexers, directly increasing the physical area occupied by cells in the processor design;"
+    },
+    "(fetchWidth, power_register)": {
+      "result": "A",
+      "explanation": "Wider fetch width necessitates more registers to store the additional fetched instructions, directly increasing register file power consumption;"
+    },
+    "(fetchWidth, nL2TLBEntries)": {
+      "result": "C",
+      "explanation": "Fetch width determines instruction fetch rate while L2 TLB entries are determined by memory management requirements and are independent architectural decisions;"
+    }
+  }
+}

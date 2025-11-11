@@ -1,0 +1,26 @@
+Filtered lines (starting with '('): 24
+================================================================================
+1. (numFetchBufferEntries, numRXQEntries): C: These are independent architectural parameters where fetch buffer entries handle instruction fetching while RXQ entries manage memory request queues, with no direct causal relationship between their sizing decisions;
+2. (numFetchBufferEntries, CPI): A: Increasing the number of fetch buffer entries can reduce instruction fetch stalls and improve instruction throughput, thereby potentially reducing cycles per instruction;
+3. (numFetchBufferEntries, memIssueWidth): C: Fetch buffer entries and memory issue width are independent architectural parameters that operate at different pipeline stages with no direct causal relationship;
+4. (numFetchBufferEntries, nICacheWays): C: These are independent cache and buffer design parameters where fetch buffer sizing does not directly influence instruction cache associativity decisions;
+5. (numFetchBufferEntries, numRasEntries): C: Fetch buffer entries and return address stack entries are independent architectural components serving different functions in the processor pipeline;
+6. (numFetchBufferEntries, enableSFBOpt): C: The number of fetch buffer entries is an architectural sizing parameter while SFB optimization is a feature enablement flag, with no direct causal relationship;
+7. (numFetchBufferEntries, nDCacheTLBWays): C: Fetch buffer entries and data cache TLB associativity are independent architectural parameters operating in different parts of the memory hierarchy;
+8. (numFetchBufferEntries, numIntPhysRegisters): C: These are independent architectural resources where fetch buffer sizing does not directly influence the number of integer physical registers needed;
+9. (numFetchBufferEntries, nL2TLBWays): C: Fetch buffer entries and L2 TLB associativity are independent architectural parameters with no direct causal relationship;
+10. (numFetchBufferEntries, numFetchBufferEntries): C: A variable cannot have a causal relationship with itself;
+11. (numFetchBufferEntries, enablePrefetching): C: Fetch buffer sizing and prefetching enablement are independent architectural decisions with no direct causal relationship;
+12. (numFetchBufferEntries, DCacheMiss): A: Larger fetch buffers can improve instruction fetch efficiency and reduce pipeline stalls, potentially affecting overall memory access patterns including data cache behavior;
+13. (numFetchBufferEntries, nDCacheMSHRs): C: Fetch buffer entries and data cache MSHR count are independent architectural parameters serving different pipeline stages;
+14. (numFetchBufferEntries, numRobEntries): C: These are independent architectural sizing parameters where fetch buffer and reorder buffer serve different pipeline functions;
+15. (numFetchBufferEntries, nL2TLBEntries): C: Fetch buffer entries and L2 TLB entry count are independent architectural parameters with no direct causal relationship;
+16. (numFetchBufferEntries, ICacheMiss): A: Increasing fetch buffer entries can help smooth out instruction fetch patterns and potentially reduce instruction cache miss rates by providing better buffering;
+17. (numFetchBufferEntries, numLdqEntries): C: Fetch buffer entries and load queue entries are independent architectural parameters serving different pipeline stages;
+18. (numFetchBufferEntries, nDCacheWays): C: These are independent architectural parameters where fetch buffer sizing does not directly influence data cache associativity;
+19. (numFetchBufferEntries, decodeWidth): C: Fetch buffer entries and decode width are independent architectural parameters that can be sized independently;
+20. (numFetchBufferEntries, numRCQEntries): C: Fetch buffer entries and RCQ entries are independent architectural parameters serving different memory subsystem functions;
+21. (numFetchBufferEntries, flush): A: Larger fetch buffers can reduce the frequency of pipeline flushes by providing better instruction buffering and reducing fetch-related stalls;
+22. (numFetchBufferEntries, intIssueWidth): C: These are independent architectural parameters where fetch buffer sizing does not directly determine integer issue width;
+23. (numFetchBufferEntries, nICacheTLBWays): C: Fetch buffer entries and instruction cache TLB associativity are independent architectural parameters with no direct causal relationship;
+24. (numFetchBufferEntries, maxBrCount): C: Fetch buffer sizing and maximum branch count are independent architectural parameters with no direct causal relationship

@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 4,
+  "sample_results": {
+    "(area_cell_count, area_cell_count)": {
+      "result": "C",
+      "explanation": "A variable cannot have a causal relationship with itself as they represent the same measurement;"
+    },
+    "(area_cell_count, time)": {
+      "result": "A",
+      "explanation": "Increasing the number of cells in a chip design directly increases the computational complexity and processing time required for synthesis, place-and-route, and simulation tools;"
+    },
+    "(area_cell_count, area_net_area)": {
+      "result": "A",
+      "explanation": "A higher number of cells in the design necessitates more interconnect wiring and routing resources, directly increasing the net area required for connections between cells;"
+    }
+  }
+}

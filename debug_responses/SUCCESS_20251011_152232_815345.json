@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 8,
+  "sample_result": {
+    "(nICacheTLBWays, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "The number of ways in the instruction cache TLB and data cache TLB are independent design parameters that do not directly influence each other, as they serve different cache subsystems;"
+    },
+    "(nICacheTLBWays, DCacheMiss)": {
+      "result": "C",
+      "explanation": "The associativity of the instruction cache TLB does not directly affect data cache miss rates since they operate on different memory access patterns and address translation paths;"
+    },
+    "(nICacheTLBWays, nDCacheMSHRs)": {
+      "result": "C",
+      "explanation": "The number of ways in the instruction cache TLB and the number of data cache miss status holding registers are independent architectural parameters serving different functions in the memory hierarchy;"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+Filtered lines (starting with '('): 10
+================================================================================
+1. (nL2TLBWays, nICacheTLBWays): C: These are independent architectural parameters that configure different TLB structures (L2 TLB and instruction cache TLB) and do not directly influence each other's design choices;
+2. (nL2TLBWays, CPI): A: Increasing the number of L2 TLB ways reduces TLB miss rates by improving address translation hit probability, which directly reduces memory access latency and decreases cycles per instruction;
+3. (nL2TLBWays, nICacheWays): C: The number of L2 TLB ways and instruction cache ways are independent architectural design parameters that configure different cache structures without direct causal relationship;
+4. (nL2TLBWays, nDCacheTLBWays): C: These parameters configure different TLB structures (L2 TLB and data cache TLB) independently and do not have a direct causal relationship in processor design;
+5. (nL2TLBWays, nL2TLBWays): C: A variable cannot have a causal relationship with itself as this would be a self-referential relationship;
+6. (nL2TLBWays, DCacheMiss): A: Increasing L2 TLB ways reduces TLB miss rates, which decreases the frequency of page table walks and subsequently reduces data cache misses caused by TLB-related memory access delays;
+7. (nL2TLBWays, nDCacheMSHRs): C: The number of L2 TLB ways and data cache MSHRs are independent architectural parameters that configure different processor components without direct causal influence;
+8. (nL2TLBWays, ICacheMiss): A: Higher L2 TLB associativity reduces TLB miss rates for instruction fetches, which decreases instruction cache misses by reducing address translation delays and improving instruction fetch efficiency;
+9. (nL2TLBWays, nDCacheWays): C: These are independent architectural design parameters that configure different cache structures (TLB associativity and data cache associativity) without direct causal relationship;
+10. (nL2TLBWays, flush): A: Increased L2 TLB ways reduce TLB miss rates and associated pipeline stalls, which decreases the frequency of pipeline flushes caused by memory access delays and branch mispredictions

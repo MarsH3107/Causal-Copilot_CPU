@@ -1,0 +1,8 @@
+Filtered lines (starting with '('): 6
+================================================================================
+1. (nDCacheMSHRs, nDCacheMSHRs): C: A variable cannot have a causal relationship with itself as this would be logically inconsistent and meaningless in any causal analysis;
+2. (nDCacheMSHRs, ICacheMiss): C: The number of data cache MSHRs is a hardware configuration parameter for data cache miss handling, while instruction cache misses are independent events related to instruction fetching that do not directly influence each other;
+3. (nDCacheMSHRs, flush): C: The number of data cache MSHRs is a static hardware configuration parameter that determines miss handling capacity, while pipeline flushes are dynamic events triggered by control flow changes or hazards, with no direct causal relationship;
+4. (nDCacheMSHRs, CPI): A: More data cache MSHRs allow the processor to handle more outstanding data cache misses concurrently, reducing memory stall cycles and thereby decreasing the cycles per instruction;
+5. (nDCacheMSHRs, nDCacheTLBWays): C: Both are independent hardware configuration parameters where the number of MSHRs affects miss handling capacity while TLB ways affect address translation, with no direct causal relationship between them;
+6. (nDCacheMSHRs, DCacheMiss): C: The number of MSHRs is a hardware configuration that affects how many misses can be handled concurrently, but does not directly cause or prevent the occurrence of data cache misses themselves, which depend on memory access patterns;

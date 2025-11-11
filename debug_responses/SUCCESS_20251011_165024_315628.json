@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 14,
+  "sample_results": {
+    "(enableSFBOpt, DCacheMiss)": {
+      "result": "A",
+      "explanation": "Store-to-load forwarding optimization reduces the need to access the data cache by forwarding store values directly to subsequent loads, thereby reducing data cache miss rates;"
+    },
+    "(enableSFBOpt, nDCacheMSHRs)": {
+      "result": "C",
+      "explanation": "Store-to-load forwarding optimization operates at the execution pipeline level and does not directly influence the hardware configuration of data cache Miss Status Holding Registers;"
+    },
+    "(enableSFBOpt, nL2TLBEntries)": {
+      "result": "C",
+      "explanation": "Store-to-load forwarding is a pipeline optimization technique that does not affect the hardware configuration of L2 Translation Lookaside Buffer entries;"
+    }
+  }
+}

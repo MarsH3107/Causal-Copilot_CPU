@@ -1,0 +1,14 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 2,
+  "sample_results": {
+    "(ICacheMiss, DCacheMiss)": {
+      "result": "C",
+      "explanation": "Instruction cache misses and data cache misses are independent events in separate cache subsystems that do not directly cause each other, as they handle different types of memory accesses;"
+    },
+    "(ICacheMiss, ICacheMiss)": {
+      "result": "C",
+      "explanation": "A variable cannot have a meaningful causal relationship with itself as it represents the same measurement;"
+    }
+  }
+}

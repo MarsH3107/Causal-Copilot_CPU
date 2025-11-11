@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 21,
+  "sample_results": {
+    "(decodeWidth, CPI)": {
+      "result": "A",
+      "explanation": "Decode width directly affects how many instructions can be decoded per cycle, which fundamentally determines the processor's instruction throughput and thus cycles per instruction;"
+    },
+    "(decodeWidth, memIssueWidth)": {
+      "result": "C",
+      "explanation": "Decode width and memory issue width are independent design parameters that operate at different pipeline stages and don't directly influence each other;"
+    },
+    "(decodeWidth, nICacheWays)": {
+      "result": "C",
+      "explanation": "The number of instruction cache ways is a cache design parameter independent of decode width, as cache associativity doesn't depend on decode pipeline width;"
+    }
+  }
+}

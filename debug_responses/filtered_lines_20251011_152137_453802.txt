@@ -1,0 +1,17 @@
+Filtered lines (starting with '('): 15
+================================================================================
+1. (enablePrefetching, numRCQEntries): C: Prefetching is a performance optimization technique while RCQ entries are hardware buffer resources that are typically determined during processor design phase independently;
+2. (enablePrefetching, flush): A: Enabling prefetching can increase the likelihood of pipeline flushes when mispredicted prefetches bring incorrect data into the cache hierarchy, requiring pipeline restart;
+3. (enablePrefetching, nICacheTLBWays): C: Prefetching enablement is a runtime configuration while instruction cache TLB associativity is a fixed hardware design parameter determined during processor architecture design;
+4. (enablePrefetching, numRXQEntries): C: Prefetching configuration operates independently from the number of receive queue entries, which are hardware resources allocated during processor design;
+5. (enablePrefetching, CPI): A: Enabling prefetching directly affects cycles per instruction by potentially reducing memory access latency through proactive data fetching, though it may sometimes increase CPI due to cache pollution;
+6. (enablePrefetching, nICacheWays): C: Prefetching enablement is a software/firmware configuration while instruction cache associativity is a fixed hardware design parameter;
+7. (enablePrefetching, enableSFBOpt): C: These are independent optimization features that can be enabled or disabled separately without one directly causing changes in the other;
+8. (enablePrefetching, nDCacheTLBWays): C: Prefetching configuration is independent from data cache TLB associativity, which is a fixed hardware design parameter;
+9. (enablePrefetching, nL2TLBWays): C: Prefetching enablement operates independently from L2 TLB associativity, which is determined during processor hardware design;
+10. (enablePrefetching, DCacheMiss): A: Enabling prefetching directly affects data cache miss rates by proactively fetching data before it is needed, potentially reducing cache misses;
+11. (enablePrefetching, enablePrefetching): C: A variable cannot have a causal relationship with itself;
+12. (enablePrefetching, nDCacheMSHRs): C: Prefetching configuration is independent from the number of miss status holding registers, which are fixed hardware resources;
+13. (enablePrefetching, nL2TLBEntries): C: Prefetching enablement operates independently from L2 TLB size, which is a fixed hardware design parameter;
+14. (enablePrefetching, ICacheMiss): A: Enabling prefetching can affect instruction cache miss rates by potentially prefetching instructions ahead of execution, though the primary impact is usually on data cache performance;
+15. (enablePrefetching, nDCacheWays): C: Prefetching configuration operates independently from data cache associativity, which is a fixed hardware design parameter determined during processor architecture design
