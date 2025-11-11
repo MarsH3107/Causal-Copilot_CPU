@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 15,
+  "sample_results": {
+    "(cpi, power_memory)": {
+      "result": "C",
+      "explanation": "Both CPI and memory power consumption are outcomes of the underlying processor design parameters rather than one directly causing the other;"
+    },
+    "(cpi, power)": {
+      "result": "C",
+      "explanation": "CPI and total power consumption are both performance and efficiency metrics that result from the same underlying architectural design decisions rather than having a direct causal relationship;"
+    },
+    "(cpi, power_pad)": {
+      "result": "C",
+      "explanation": "CPI and pad power consumption are independent outcomes of different aspects of processor design with no direct causal relationship between them;"
+    }
+  }
+}

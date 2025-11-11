@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 22,
+  "sample_results": {
+    "(nL2TLBEntries, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "These are independent cache configuration parameters that can be set independently without one directly causing changes in the other;"
+    },
+    "(nL2TLBEntries, power_logic)": {
+      "result": "A",
+      "explanation": "Increasing the number of L2 TLB entries requires additional logic circuits and transistors, which directly increases the power consumption of logic components;"
+    },
+    "(nL2TLBEntries, nL2TLBWays)": {
+      "result": "C",
+      "explanation": "The number of entries and associativity (ways) are independent design parameters that can be configured separately in TLB design;"
+    }
+  }
+}

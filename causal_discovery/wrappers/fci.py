@@ -99,7 +99,7 @@ class FCI(CausalDiscoveryAlgorithm):
         self._secondary_param_keys = ['max_path_length', 'verbose', 'background_knowledge', 'show_progress']
         return {k: v for k, v in self._params.items() if k in self._secondary_param_keys}
 
-    def fit(self, data: pd.DataFrame) -> Tuple[np.ndarray, Dict, Tuple[CausalGraph, List]]:
+    def fit_old(self, data: pd.DataFrame) -> Tuple[np.ndarray, Dict, Tuple[CausalGraph, List]]:
         # Check and remove domain_index if it exists
         if 'domain_index' in data.columns:
             data = data.drop(columns=['domain_index'])
@@ -132,6 +132,132 @@ class FCI(CausalDiscoveryAlgorithm):
         }
 
         return adj_matrix, info, (graph, edges)
+
+
+    """
+    完整的FCI算法fit方法 - 包含后续处理
+    """
+
+    def fit(self, data: pd.DataFrame, background_knowledge=None) -> Tuple[np.ndarray, Dict, Tuple]:
+        """
+        执行FCI算法
+        
+        参数:
+            data: pandas DataFrame
+            background_knowledge: BackgroundKnowledge对象（可选）
+        
+        返回:
+            (adj_matrix, info, (G, edges))
+        """
+        # Check and remove domain_index if it exists
+        if 'domain_index' in data.columns:
+            data = data.drop(columns=['domain_index'])
+        
+        node_names = list(data.columns)
+        data_values = data.values
+        
+        # Get parameters
+        secondary_params = self.get_secondary_params().copy()
+        
+        # ========== 处理background_knowledge ==========
+        if background_knowledge is not None:
+            # 外部传入的优先级更高
+            secondary_params['background_knowledge'] = background_knowledge
+            from utils.logger import logger
+            logger.detail("Using externally provided background_knowledge for FCI")
+        
+        # Process background knowledge if provided
+        if secondary_params.get('background_knowledge') is not None:
+            from causallearn.utils.PCUtils.BackgroundKnowledge import BackgroundKnowledge
+            bk_input = secondary_params['background_knowledge']
+            
+            if isinstance(bk_input, BackgroundKnowledge):
+                bk = bk_input
+            else:
+                bk = self._create_background_knowledge(bk_input, node_names)
+            
+            secondary_params['background_knowledge'] = bk
+        
+        # ========== 调用FCI算法 ==========
+        all_params = {**self.get_primary_params(), **secondary_params}
+        
+        # 从causallearn导入FCI
+        from causallearn.search.ConstraintBased.FCI import fci as cl_fci
+        
+        # FCI返回(G, edges)，其中G是GeneralGraph对象
+        G, edges = cl_fci(data_values, **all_params)
+        
+        # ========== 后续处理：转换为邻接矩阵 ==========
+        # FCI的G是PAG (Partial Ancestral Graph)，需要转换为邻接矩阵
+        adj_matrix = self.convert_fci_to_adjacency_matrix(G)
+        
+        # ========== 准备额外信息 ==========
+        info = {
+            'node_names': node_names,
+            'edges': edges,  # FCI发现的边列表
+            'graph_type': 'PAG',  # Partial Ancestral Graph
+            'num_nodes': len(node_names),
+            'num_edges': len(edges) if edges else 0,
+            # FCI特有的信息
+            'sepset': G.sepset if hasattr(G, 'sepset') else None,
+            'max_path_length': all_params.get('max_path_length', -1),
+        }
+        
+        return adj_matrix, info, (G, edges)
+
+
+    def convert_fci_to_adjacency_matrix(self, G) -> np.ndarray:
+        """
+        将FCI的PAG (GeneralGraph)转换为邻接矩阵
+        
+        FCI的边类型编码：
+        - 0: no edge (o o)
+        - 1: directed edge (→)
+        - 2: undirected edge (-)
+        - 3: bidirected edge (↔)
+        - 4: circle-arrow (o→)
+        - 5: circle-circle (o-o)
+        - 6: circle-dash (o-)
+        
+        返回:
+            邻接矩阵 (i,j)=1 表示 j→i 或相关边
+        """
+        import numpy as np
+        
+        # 获取图的邻接矩阵
+        if hasattr(G, 'graph'):
+            # GeneralGraph对象
+            graph_matrix = G.graph
+        else:
+            # 直接是numpy数组
+            graph_matrix = G
+        
+        n_nodes = graph_matrix.shape[0]
+        adj_matrix = np.zeros((n_nodes, n_nodes), dtype=int)
+        
+        # 转换FCI的边编码为标准邻接矩阵
+        for i in range(n_nodes):
+            for j in range(n_nodes):
+                edge_type = graph_matrix[i, j]
+                
+                if edge_type == 1:  # j → i (directed)
+                    adj_matrix[i, j] = 1
+                elif edge_type == 2:  # j - i (undirected)
+                    adj_matrix[i, j] = 2
+                    adj_matrix[j, i] = 2
+                elif edge_type == 3:  # j ↔ i (bidirected)
+                    adj_matrix[i, j] = 3
+                    adj_matrix[j, i] = 3
+                elif edge_type == 4:  # j o→ i (circle-arrow)
+                    adj_matrix[i, j] = 4
+                elif edge_type == 5:  # j o-o i (circle-circle)
+                    adj_matrix[i, j] = 6
+                    adj_matrix[j, i] = 6
+                elif edge_type == 6:  # j o- i (circle-dash)
+                    adj_matrix[i, j] = 5
+        
+        return adj_matrix
+
 
     def convert_to_adjacency_matrix(self, adj_matrix: CausalGraph) -> np.ndarray:
         adj_matrix = adj_matrix.graph

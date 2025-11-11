@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 34,
+  "sample_results": {
+    "(numRasEntries, numRobEntries)": {
+      "result": "C",
+      "explanation": "RAS entries for branch prediction and ROB entries for instruction retirement are independent microarchitectural resources that don't directly influence each other's sizing;"
+    },
+    "(numRasEntries, nL2TLBEntries)": {
+      "result": "C",
+      "explanation": "Return address stack entries and L2 TLB entries serve completely different functions in the processor and are sized independently;"
+    },
+    "(numRasEntries, area)": {
+      "result": "A",
+      "explanation": "Increasing RAS entries requires additional storage hardware which directly increases the total chip area;"
+    }
+  }
+}

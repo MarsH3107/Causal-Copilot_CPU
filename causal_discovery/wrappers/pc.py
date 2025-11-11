@@ -129,7 +129,7 @@ class PC(CausalDiscoveryAlgorithm):
                                     'background_knowledge', 'verbose', 'show_progress', 'gamma']
         return {k: v for k, v in self._params.items() if k in self._secondary_param_keys}
 
-    def fit(self, data: pd.DataFrame) -> Tuple[np.ndarray, Dict, CausalGraph]:
+    def fit_old(self, data: pd.DataFrame) -> Tuple[np.ndarray, Dict, CausalGraph]:
         # Check and remove domain_index if it exists
         if 'domain_index' in data.columns:
             data = data.drop(columns=['domain_index'])
@@ -178,7 +178,91 @@ class PC(CausalDiscoveryAlgorithm):
             }
 
         return adj_matrix, info, cg
-    
+
+    """
+    修改后的PC算法fit方法 - 支持传入background_knowledge参数
+    """
+
+    def fit(self, data: pd.DataFrame, background_knowledge=None) -> Tuple[np.ndarray, Dict, CausalGraph]:
+        """
+        执行PC算法
+        
+        参数:
+            data: pandas DataFrame
+            background_knowledge: BackgroundKnowledge对象（可选）
+                                如果提供，会覆盖secondary_params中的设置
+        
+        返回:
+            (adj_matrix, info, cg)
+        """
+        # Check and remove domain_index if it exists
+        if 'domain_index' in data.columns:
+            data = data.drop(columns=['domain_index'])
+            
+        node_names = list(data.columns)
+        data_values = data.values
+        
+        # Check GPU availability
+        if cuda_available and 'gpu' in self._params['indep_test']:
+            use_gpu = True
+            self._params['indep_test'] = self._params['indep_test'].replace('_gpu', '')
+        else:
+            use_gpu = False
+            self._params['indep_test'] = self._params['indep_test'].replace('_cpu', '')
+        
+        if use_gpu:
+            # ========== GPU实现（不支持background knowledge）==========
+            if background_knowledge is not None:
+                from utils.logger import logger
+                logger.warning("⚠️  GPU mode does not support background_knowledge, ignoring constraints")
+            
+            all_params = {
+                'alpha': self._params['alpha'],
+                'indep_test': self._params['indep_test'],
+                'depth': self._params['depth'],
+            }
+            adj_matrix, info = accelerated_pc(data_values, **all_params)
+            adj_matrix = self.convert_to_adjacency_matrix(adj_matrix)
+            cg = adj_matrix
+        else:
+            # ========== CPU实现（支持background knowledge）==========
+            secondary_params = self.get_secondary_params().copy()
+            
+            # ★ 关键修改：如果传入了background_knowledge，使用传入的值
+            if background_knowledge is not None:
+                # 外部传入的background_knowledge优先级更高
+                secondary_params['background_knowledge'] = background_knowledge
+                from utils.logger import logger
+                logger.detail("Using externally provided background_knowledge")
+            
+            # Process background knowledge if provided
+            if secondary_params.get('background_knowledge') is not None:
+                bk_input = secondary_params['background_knowledge']
+                
+                # 检查是否已经是BackgroundKnowledge对象
+                from causallearn.utils.PCUtils.BackgroundKnowledge import BackgroundKnowledge
+                if isinstance(bk_input, BackgroundKnowledge):
+                    # 已经是BackgroundKnowledge对象，直接使用
+                    bk = bk_input
+                else:
+                    # 是字典或其他格式，需要转换
+                    bk = self._create_background_knowledge(bk_input, node_names)
+                
+                secondary_params['background_knowledge'] = bk
+            
+            all_params = {**self.get_primary_params(), **secondary_params, 'node_names': node_names}
+            cg = cl_pc(data_values, **all_params)
+            adj_matrix = self.convert_to_adjacency_matrix(cg.G.graph)
+            
+            # Prepare additional information
+            info = {
+                'sepset': cg.sepset if hasattr(cg, 'sepset') else None,
+                'definite_UC': cg.definite_UC if hasattr(cg, 'definite_UC') else [],
+                'definite_non_UC': cg.definite_non_UC if hasattr(cg, 'definite_non_UC') else [],
+            }
+        
+        return adj_matrix, info, cg
+
     def convert_to_adjacency_matrix(self, adj_matrix: np.ndarray) -> np.ndarray:
         # Handle both GPU and CPU graph formats
         inferred_flat = np.zeros_like(adj_matrix)

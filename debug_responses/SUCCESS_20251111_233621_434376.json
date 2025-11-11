@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 15,
+  "sample_results": {
+    "(cpi, power_memory)": {
+      "result": "C",
+      "explanation": "CPI and memory power consumption are both outcomes of underlying architectural design decisions and workload characteristics, but CPI does not directly cause changes in memory power consumption;"
+    },
+    "(cpi, power)": {
+      "result": "C",
+      "explanation": "CPI and total power consumption are both results of processor architecture and workload characteristics, but CPI itself does not directly cause overall power consumption changes;"
+    },
+    "(cpi, power_pad)": {
+      "result": "C",
+      "explanation": "CPI and pad power consumption are independent metrics where CPI reflects instruction execution efficiency while pad power relates to I/O interface power consumption;"
+    }
+  }
+}

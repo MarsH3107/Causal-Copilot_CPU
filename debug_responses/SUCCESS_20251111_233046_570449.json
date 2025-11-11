@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 32,
+  "sample_results": {
+    "(decodeWidth, power_switching)": {
+      "result": "A",
+      "explanation": "Increasing decode width requires more transistors and logic gates to operate simultaneously, directly increasing switching activity and power consumption;"
+    },
+    "(decodeWidth, time)": {
+      "result": "C",
+      "explanation": "Decode width affects throughput but not the fundamental timing characteristics of the processor design;"
+    },
+    "(decodeWidth, cpi)": {
+      "result": "A",
+      "explanation": "Wider decode width allows more instructions to be processed per cycle, directly reducing cycles per instruction;"
+    }
+  }
+}

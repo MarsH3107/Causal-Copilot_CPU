@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 3,
+  "sample_results": {
+    "(area_cell_area, area_cell_area)": {
+      "result": "C",
+      "explanation": "A variable cannot have a causal relationship with itself as it represents the same measurement;"
+    },
+    "(area_cell_area, time)": {
+      "result": "C",
+      "explanation": "Cell area and execution time are independent design metrics that do not directly cause changes in each other;"
+    },
+    "(area_cell_area, area_net_area)": {
+      "result": "C",
+      "explanation": "These represent different physical area components in chip design that are independently determined and do not directly cause changes in each other;"
+    }
+  }
+}

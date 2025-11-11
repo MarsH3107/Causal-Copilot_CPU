@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 11,
+  "sample_results": {
+    "(power_internal, power_logic)": {
+      "result": "C",
+      "explanation": "Power_internal and power_logic are separate components of total power consumption that are independently calculated based on different circuit activities and design parameters;"
+    },
+    "(power_internal, area_cell_area)": {
+      "result": "C",
+      "explanation": "Power_internal is determined by switching activity and voltage levels while area_cell_area is a physical layout metric, making them independent measures of different design aspects;"
+    },
+    "(power_internal, power_register)": {
+      "result": "C",
+      "explanation": "Power_internal and power_register represent distinct power consumption categories that are calculated separately based on different circuit components and activities;"
+    }
+  }
+}

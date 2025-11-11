@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 28,
+  "sample_results": {
+    "(intIssueWidth, power_logic)": {
+      "result": "A",
+      "explanation": "Increasing integer issue width requires more complex instruction scheduling logic, dispatch units, and execution pipelines, directly increasing the logic power consumption;"
+    },
+    "(intIssueWidth, power_leakage)": {
+      "result": "A",
+      "explanation": "Wider issue width necessitates more transistors in execution units, register files, and scheduling logic, directly increasing the total leakage power;"
+    },
+    "(intIssueWidth, area_cell_area)": {
+      "result": "A",
+      "explanation": "Higher integer issue width requires additional execution units, larger register files, and more complex scheduling hardware, directly increasing the cell area;"
+    }
+  }
+}

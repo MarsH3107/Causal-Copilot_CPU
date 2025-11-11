@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 14,
+  "sample_results": {
+    "(power, power_leakage)": {
+      "result": "B",
+      "explanation": "Power leakage is a fundamental component of total power consumption in processors, where leakage power directly contributes to and determines the overall power consumption;"
+    },
+    "(power, area_cell_area)": {
+      "result": "C",
+      "explanation": "Power consumption and cell area are independent design metrics in processor architecture, where power relates to energy consumption while cell area relates to physical layout space;"
+    },
+    "(power, power_register)": {
+      "result": "B",
+      "explanation": "Register power consumption is a specific component that directly contributes to the total power consumption of a processor;"
+    }
+  }
+}

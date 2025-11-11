@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 37,
+  "sample_results": {
+    "(BranchPredictor, decodeWidth)": {
+      "result": "C",
+      "explanation": "Branch predictor and decode width are independent architectural parameters that operate at different pipeline stages without direct causal influence;"
+    },
+    "(BranchPredictor, numRCQEntries)": {
+      "result": "C",
+      "explanation": "Branch predictor functionality and the number of request completion queue entries are independent design parameters serving different processor subsystems;"
+    },
+    "(BranchPredictor, power)": {
+      "result": "A",
+      "explanation": "Branch predictor circuits consume power through their prediction logic, lookup tables, and update mechanisms, directly contributing to overall processor power consumption;"
+    }
+  }
+}

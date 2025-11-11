@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 22,
+  "sample_results": {
+    "(nL2TLBEntries, nDCacheTLBWays)": {
+      "result": "C",
+      "explanation": "These are independent design parameters where L2 TLB entries and data cache TLB associativity are configured separately without direct causal influence;"
+    },
+    "(nL2TLBEntries, power_logic)": {
+      "result": "A",
+      "explanation": "Increasing L2 TLB entries requires additional logic circuits for address translation and lookup operations, directly increasing logic power consumption;"
+    },
+    "(nL2TLBEntries, nL2TLBWays)": {
+      "result": "C",
+      "explanation": "The number of TLB entries and the associativity (ways) of the L2 TLB are independent architectural parameters that can be configured separately;"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 36,
+  "sample_results": {
+    "(fetchWidth, area_cell_area)": {
+      "result": "A",
+      "explanation": "Wider fetch units require more transistors and larger instruction buffers, directly increasing the physical cell area of the processor;"
+    },
+    "(fetchWidth, power_register)": {
+      "result": "A",
+      "explanation": "Wider fetch requires more register file ports and larger instruction buffers, increasing register-related power consumption;"
+    },
+    "(fetchWidth, nL2TLBEntries)": {
+      "result": "C",
+      "explanation": "Fetch width and L2 TLB entries are independent design parameters that don't directly influence each other;"
+    }
+  }
+}

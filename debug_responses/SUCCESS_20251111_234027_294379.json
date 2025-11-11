@@ -1,0 +1,18 @@
+{
+  "prompt_type": "cot_all_relation",
+  "parsed_count": 21,
+  "sample_results": {
+    "(nL2TLBWays, power_pad)": {
+      "result": "A",
+      "explanation": "Increasing the number of ways in L2 TLB requires additional hardware structures and interconnects that directly contribute to pad power consumption for signal routing;"
+    },
+    "(nL2TLBWays, nICacheTLBWays)": {
+      "result": "C",
+      "explanation": "These are independent design parameters for different cache structures (L2 TLB vs instruction cache TLB) that can be configured separately without direct causal relationship;"
+    },
+    "(nL2TLBWays, power_switching)": {
+      "result": "A",
+      "explanation": "More ways in L2 TLB increase the switching activity during address translation operations, directly causing higher dynamic power consumption;"
+    }
+  }
+}
