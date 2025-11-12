@@ -115,10 +115,13 @@ Statistical Properties:
 - **nDCacheMSHRs**: Miss Status Holding Registers for data cache (typically 4-32)
 - **nDCacheTLBWays**: Data cache TLB associativity
 
-**Performance and Physical Metrics:**
+**Performance and Resource Metrics:**
 - **cpi**: Cycles Per Instruction (lower is better, typically 0.5-5.0)
 - **power**: Total power consumption (Watts)
 - **area**: Total chip area (mm²)
+- **time**: Execution time or simulation time
+
+**Detailed Power Breakdown:**
 - **power_leakage**: Static power consumption
 - **power_internal**: Internal switching power
 - **power_switching**: Dynamic switching power
@@ -127,149 +130,145 @@ Statistical Properties:
 - **power_logic**: Logic circuits power
 - **power_clock**: Clock distribution power
 - **power_pad**: I/O pad power
+
+**Area Breakdown:**
 - **area_cell_count**: Number of standard cells
-- **area_cell_area**: Area occupied by cells
-- **area_net_area**: Area for interconnects
-- **time**: Simulation or measurement time
+- **area_cell_area**: Area occupied by standard cells
+- **area_net_area**: Area for interconnect routing
 
 ## 2. CAUSAL RELATIONSHIPS
 
 **Direct Causal Paths:**
-- Configuration parameters → Performance (cpi)
-- Configuration parameters → Power consumption
-- Configuration parameters → Area requirements
-- Larger structures (buffers, caches) → Higher power and area
-- Better prediction/optimization → Lower CPI
-- Wider issue widths → Lower CPI but higher power
+- Buffer sizes → Performance (CPI): Larger buffers reduce stalls
+- Issue widths → Performance: Wider issue improves ILP exploitation
+- Cache parameters → Performance: Better cache design reduces miss rates
+- All configuration parameters → Power consumption
+- All configuration parameters → Area consumption
+- Performance optimizations → Power-performance tradeoffs
 
 **Indirect Relationships:**
-- Cache configuration → Memory access patterns → Power consumption
-- Branch prediction accuracy → Pipeline efficiency → CPI
-- Register file size → Instruction-level parallelism → Performance
+- Branch predictor accuracy → Fetch efficiency → Overall performance
+- Cache hierarchy design → Memory access patterns → Power consumption
+- Register file size → Instruction scheduling → Performance
 
 ## 3. RELATIONSHIP NATURE
 
 **Primarily Nonlinear Relationships:**
-- CPI vs. buffer sizes: Diminishing returns (logarithmic improvement)
-- Power vs. frequency/width: Quadratic or cubic relationships
+- Performance vs. buffer sizes: Diminishing returns (logarithmic)
+- Power vs. frequency/width: Quadratic/cubic relationships
 - Area vs. cache size: Near-linear but with discrete jumps
-- Performance vs. associativity: Step functions with saturation
+- CPI improvements: Often exhibit saturation effects
 
 **Examples:**
-- Doubling cache size may reduce miss rate by 20-30%, not 50%
-- Increasing issue width from 2 to 4 may improve performance by 40%, but 4 to 8 only by 15%
+- Doubling cache size may only improve performance by 10-20%
+- Power scales superlinearly with issue width due to complexity
 
 ## 4. DATA DISTRIBUTION
 
-**Typical Distributions:**
-- **CPI**: Log-normal distribution (right-skewed, bounded below by theoretical minimum)
-- **Power components**: Gamma or log-normal distributions
-- **Buffer sizes**: Often discrete, power-of-2 distributions
-- **Area metrics**: Log-normal with potential multimodality
-- **Cache parameters**: Discrete uniform or geometric distributions
+**Expected Distributions:**
+- **CPI**: Right-skewed, typically 0.5-3.0 with long tail
+- **Power**: Log-normal distribution due to multiplicative effects
+- **Area**: Heavy-tailed due to cache and buffer size variations
+- **Configuration parameters**: Often discrete, uniform, or design-space constrained
 
 ## 5. CONFOUNDERS
 
 **Unmeasured Variables:**
 - Workload characteristics (instruction mix, memory access patterns)
-- Manufacturing process technology (22nm, 14nm, etc.)
+- Technology node and manufacturing process
 - Operating frequency and voltage
-- Thermal design constraints
-- Compiler optimization levels
-- Memory hierarchy beyond L2 (L3 cache, main memory latency)
+- Thermal conditions
+- Compiler optimizations used
+- Memory hierarchy beyond L2 (L3, main memory)
 
 ## 6. TEMPORAL ASPECTS
 
-**Limited Temporal Dependencies:**
-- This appears to be cross-sectional design space exploration data
-- **time** variable likely represents simulation duration, not temporal causality
-- No inherent time-series structure expected
-- Configuration decisions are typically made at design time
+**Static Design Analysis:**
+- This appears to be cross-sectional design space exploration
+- No inherent temporal dependencies in configuration parameters
+- Time variable may represent simulation duration or design iteration
 
 ## 7. HETEROGENEITY
 
 **Subgroup Variations:**
-- Different processor types (in-order vs. out-of-order)
-- Various application domains (compute-intensive vs. memory-intensive)
-- Different power/performance targets (mobile vs. server)
-- Technology node variations affecting power-performance relationships
+- Different workload types (CPU-bound vs. memory-bound)
+- Various technology nodes (different power/area scaling)
+- Different optimization objectives (performance vs. power vs. area)
+- Branch predictor types may create distinct performance regimes
 
 ## 8. GRAPH DENSITY
 
-**Moderately Dense Causal Structure:**
-- Configuration parameters have multiple effects (power, performance, area)
-- Shared resources create dependencies between parameters
-- Power components sum to total power (accounting relationship)
-- Area components sum to total area
-- Expected 20-40% edge density in true causal graph
+**Moderately Dense Relationships:**
+- Most configuration parameters affect performance, power, and area
+- Strong interconnections within subsystems (cache parameters, issue widths)
+- Approximately 30-40% of possible edges likely present in true causal graph
 
 ## 9. DOMAIN-SPECIFIC CONSTRAINTS
 
-**Physical and Logical Constraints:**
-- Power conservation: Sum of power components ≤ Total power
-- Area conservation: Sum of area components ≤ Total area
-- Performance bounds: CPI ≥ 1/issue_width (theoretical minimum)
-- Buffer size constraints: Powers of 2, hardware implementation limits
-- Associativity constraints: Must be powers of 2, ≤ cache size
-- Monotonicity: Larger structures generally increase area and power
+**Physical Constraints:**
+- Amdahl's Law: Performance improvements bounded by sequential portions
+- Power density limits: Cannot arbitrarily increase all parameters
+- Area constraints: Chip size limitations
+- Timing constraints: Critical path delays limit frequency scaling
+
+**Logical Constraints:**
+- Buffer sizes must be powers of 2 or specific increments
+- Associativity typically powers of 2
+- Issue widths limited by instruction dependencies
 
 ## 10. RELEVANT LITERATURE
 
 **Key References:**
 - Hennessy & Patterson: "Computer Architecture: A Quantitative Approach"
-- SPEC CPU benchmarking methodologies
-- CACTI power and area modeling frameworks
-- McPAT (Multicore Power, Area, and Timing) modeling
-- Wattch power estimation methodology
-- Computer architecture conference proceedings (ISCA, MICRO, HPCA)
+- Koomey et al.: Power scaling laws in processors
+- SPEC benchmark studies for performance characterization
+- CACTI models for cache power/area estimation
+- McPAT framework for architectural power modeling
 
 ## 11. DATA QUALITY ISSUES
 
 **Potential Issues:**
-- Simulation vs. actual hardware measurements
-- Model accuracy limitations (especially for power estimation)
-- Parameter correlation in design space exploration
-- Missing intermediate cache levels
-- Workload dependency not captured
-- Technology scaling effects not modeled
+- Simulation accuracy vs. real hardware
+- Corner case configurations may have unreliable estimates
+- Power models may have systematic biases
+- Missing interactions between distant components
+- Workload representativeness
 
 ## 12. INTERACTION EFFECTS
 
 **Complex Interactions:**
-- **Multiplicative**: Issue width × buffer sizes for performance
-- **Threshold effects**: Cache miss rates with associativity changes
-- **Synergistic**: Branch prediction + prefetching effectiveness
-- **Competitive**: Power budget allocation between components
-- **Saturation**: Diminishing returns with larger structures
+- **Multiplicative**: Power = f(width) × f(frequency) × f(voltage)²
+- **Threshold Effects**: Performance benefits only above certain buffer sizes
+- **Synergistic**: Branch predictor + fetch width interactions
+- **Competitive**: Area budget constraints create zero-sum tradeoffs
 
 ## 13. FEEDBACK LOOPS
 
-**Limited Feedback in Design Context:**
-- No direct feedback loops in static design parameters
-- Potential indirect feedback through thermal constraints affecting performance
-- Design iteration cycles not captured in this dataset
-- Runtime adaptation mechanisms not represented
+**Limited Feedback in Design Space:**
+- No direct feedback loops in static configuration analysis
+- Potential indirect feedback through thermal effects (not captured)
+- Design iteration feedback (human designer choices) not in data
 
 ## 14. INSTRUMENTAL VARIABLES
 
 **Potential Instruments:**
-- Technology-specific constraints (manufacturing limitations)
-- Design methodology choices (automated vs. manual optimization)
-- Target application domain requirements
-- Power/area budget constraints imposed externally
+- Technology-specific constraints (e.g., minimum feature sizes)
+- Design methodology choices independent of performance goals
+- Random design space sampling parameters
 
 ## 15. INTERVENTION HISTORY
 
-**Design Space Exploration Nature:**
-- Variables represent design choices, not natural experiments
-- Systematic parameter sweeps likely conducted
-- No temporal interventions or policy changes
-- Controlled experimental design for architecture evaluation
+**Design Space Exploration:**
+- Data likely represents systematic design space exploration
+- Each row represents an intentional configuration choice
+- No natural experiments or policy interventions
 
 ## 16-20. TIME-SERIES ASPECTS
 
 **Not Applicable:**
-This dataset represents cross-sectional design space exploration rather than time-series data. The 'time' variable likely represents simulation duration or measurement time, not temporal causality. No stationarity, lag structure, regime changes, contemporaneous effects, or periodicity considerations apply to this architectural design dataset.
+This appears to be cross-sectional design space data rather than time-series data. The 'time' variable likely represents simulation time or design evaluation time rather than temporal evolution of a system.
+
+**Key Insight:** This dataset represents a classic computer architecture design space exploration where engineers systematically vary configuration parameters to understand performance, power, and area tradeoffs in processor design.
 
 We have selected the following algorithm for causal discovery:
 

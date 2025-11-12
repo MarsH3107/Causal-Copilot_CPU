@@ -53,9 +53,9 @@ class PC(CausalDiscoveryAlgorithm):
     def __init__(self, params: Dict = {}):
         super().__init__(params)
         self._params = {
-            'alpha': 0.05,
+            'alpha': 0.2,
             'indep_test': 'fisherz_cpu',  # Default to fisherz
-            'depth': 4,
+            'depth': 2,
             'stable': True,
             'uc_rule': 0,
             'uc_priority': -1,

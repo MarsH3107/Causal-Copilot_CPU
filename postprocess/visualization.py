@@ -219,7 +219,7 @@ class Visualization(object):
                 plt.tight_layout()
                 # Save the plot
                 save_path_conf = os.path.join(self.save_dir, f'{key}_confidence_heatmap.jpg')
-                plt.savefig(fname=save_path_conf, dpi=1000)
+                plt.savefig(fname=save_path_conf, dpi=200)
                 plt.close()  # Close the figure to free memory
                 paths.append(save_path_conf)
                 logger.debug(f"Successfully generated confidence heatmap: {save_path_conf}", "Visualization")
@@ -288,7 +288,7 @@ class Visualization(object):
         plt.tight_layout()
 
         save_path = os.path.join(self.save_dir, 'metrics.jpg')
-        plt.savefig(fname=save_path, dpi=1000)
+        plt.savefig(fname=save_path, dpi=200)
 
         return save_path
 

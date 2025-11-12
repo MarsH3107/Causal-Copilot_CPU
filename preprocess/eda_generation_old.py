@@ -182,7 +182,7 @@ class EDA(object):
         if not os.path.exists(self.save_dir):
             os.makedirs(self.save_dir)
         save_path_dist = os.path.join(self.save_dir, 'eda_dist.jpg')
-        plt.savefig(fname=save_path_dist, dpi=1000)
+        plt.savefig(fname=save_path_dist, dpi=200)
         plt.close(fig)
 
         return save_path_dist
@@ -227,7 +227,7 @@ class EDA(object):
         if not os.path.exists(self.save_dir):
             os.makedirs(self.save_dir)
         save_path_corr = os.path.join(self.save_dir, 'eda_corr.jpg')
-        plt.savefig(fname=save_path_corr, dpi=1000)
+        plt.savefig(fname=save_path_corr, dpi=200)
 
         return correlation_matrix, save_path_corr
 
@@ -341,7 +341,7 @@ class EDA(object):
             ax.tick_params(axis = 'x', labelsize = 6, rotation = 45)
         plt.tight_layout()
         save_path_additional = os.path.join(self.save_dir, 'eda_additional.jpg')
-        plt.savefig(save_path_additional, dpi=1000)
+        plt.savefig(save_path_additional, dpi=200)
 
         return save_path_additional
     
@@ -439,7 +439,7 @@ class EDA(object):
         
         # Save the plot
         save_path = os.path.join(self.save_dir, 'eda_multivariate_ts.jpg')
-        plt.savefig(save_path, dpi=1000)
+        plt.savefig(save_path, dpi=200)
         plt.close(fig)
         
         return save_path
@@ -549,7 +549,7 @@ class EDA(object):
         
         # Save the plot
         save_path = os.path.join(self.save_dir, 'eda_lag_correlation.jpg')
-        plt.savefig(save_path, dpi=1000, bbox_inches='tight')  # Use bbox_inches to prevent truncation
+        plt.savefig(save_path, dpi=200, bbox_inches='tight')  # Use bbox_inches to prevent truncation
         plt.close(fig)
         
         return save_path, summary
@@ -858,7 +858,7 @@ class EDA(object):
             
             # Save the plot for this variable
             var_save_path = os.path.join(self.save_dir, f'eda_ts_diagnostics_{idx+1}_{col}.jpg')
-            plt.savefig(var_save_path, dpi=1000, bbox_inches='tight')
+            plt.savefig(var_save_path, dpi=200, bbox_inches='tight')
             plt.close()
         
         ################
@@ -912,7 +912,7 @@ class EDA(object):
         
         # Save the index plot
         index_save_path = os.path.join(self.save_dir, 'eda_ts_diagnostics.jpg')
-        plt.savefig(index_save_path, dpi=1000, bbox_inches='tight')
+        plt.savefig(index_save_path, dpi=200, bbox_inches='tight')
         plt.close()
         
         return index_save_path, summary
@@ -1035,7 +1035,7 @@ class EDA(object):
             
             # Save the plot
             save_path = os.path.join(self.save_dir, 'eda_var_analysis.jpg')
-            plt.savefig(save_path, dpi=1000, bbox_inches='tight')
+            plt.savefig(save_path, dpi=200, bbox_inches='tight')
             plt.close(fig)
             
             # Get model summary
@@ -1124,23 +1124,15 @@ class EDA(object):
         else:
             # Regular tabular data EDA
             # Run standard analyses in parallel
-
-# Regular tabular data EDA
-        # Run standard analyses sequentially (avoid hanging)
-            from utils.logger import logger
+            results = Parallel(n_jobs=-1)(
+                delayed(func)() for func in [
+                    self.plot_dist,
+                    self.plot_corr,
+                    self.desc_dist,
+                    self.additional_analysis
+                ]
+            )
             
-            logger.detail("Task 1/4: Distribution plots...")
-            plot_path_dist = self.plot_dist()
-            
-            logger.detail("Task 2/4: Correlation matrix...")
-            corr_mat, plot_path_corr = self.plot_corr()
-            
-            logger.detail("Task 3/4: Distribution analysis...")
-            numerical_analysis, categorical_analysis = self.desc_dist()
-            
-            logger.detail("Task 4/4: Additional analysis...")
-            plot_path_additional = self.additional_analysis()
-
             # Unpack results
             plot_path_dist = results[0]
             corr_mat, plot_path_corr = results[1]

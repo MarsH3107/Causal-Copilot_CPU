@@ -6,7 +6,7 @@ from utils.logger import logger
 from .context.algos.utils.json2txt import create_filtered_benchmarking_results, create_filtered_benchmarking_results_ts 
 import os
 
-def load_external_constraints(constraint_file='cpu_constraints_complete.json'):
+def load_external_constraints(constraint_file='/home/marsh/Documents/Project/Casual_Copilot/DSE_Copilot/extension/cpu_constraints_complete.json'):
     """
     加载外部CPU约束文件
     

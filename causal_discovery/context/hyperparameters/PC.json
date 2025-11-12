@@ -12,7 +12,8 @@
   },
   "depth": {
     "meaning": "Maximum depth for skeleton search",
-    "available_values": [-1, 6, 5, 4, 3],
+    //"available_values": [-1, 6, 5, 4, 3],
+    "available_values": [2],
     "expert_suggestion": "Use -1 as default. Use -1 for unlimited depth. For large graphs, limiting depth (e.g., 2-4) can significantly speed up the algorithm with a minor trade-off in accuracy. For CPU-based independence tests: A graph with node number < 10, use depth 6; A graph with node number 10-25, use depth 5; A graph with node number 25-50, use depth 4; A graph with node number > 50, use depth 3. For GPU-accelerated independence tests: A graph with node number < 50, use depth -1; A graph with node number 50-100, use depth 5; A graph with node number > 100, use depth 4."
   },
   "background_knowledge": {

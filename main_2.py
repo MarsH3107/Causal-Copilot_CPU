@@ -251,7 +251,7 @@ def export_phase_results(global_state, phase_name):
             'hyperparameters': global_state.algorithm.algorithm_arguments,
         }
     
-    if phase_name >= 1 and hasattr(global_state.results, 'converted_graph'):
+    if phase_name >= 2 and hasattr(global_state.results, 'converted_graph'):
         import numpy as np
         summary['graph_info'] = {
             'original_edges': int((global_state.results.converted_graph != 0).sum()),
@@ -486,28 +486,10 @@ def main(args):
         logger.checkpoint("Data preprocessing completed")
         
         #############EDA###################
-        # logger.step(5, 10, "Exploratory Data Analysis")
-        # logger.detail("Generating statistical summaries and visualizations...")
-        # my_eda = EDA(global_state)
-        # my_eda.generate_eda()
         logger.step(5, 10, "Exploratory Data Analysis")
-        logger.detail("Skipping EDA visualization (fast mode)...")
-
-        # 创建 EDA 占位符结果
-        global_state.results.eda = {
-            'plot_path_dist': None,
-            'plot_path_corr': None,
-            'dist_analysis_num': {},
-            'dist_analysis_cat': {},
-            'corr_analysis': {},
-            'plot_path_additional': None,
-            'feature_info': {
-                'total_features': len(global_state.user_data.processed_data.columns),
-                'displayed_features': len(global_state.user_data.processed_data.columns)
-            }
-        }
-        logger.success("EDA skipped, using placeholders")
-        
+        logger.detail("Generating statistical summaries and visualizations...")
+        my_eda = EDA(global_state)
+        my_eda.generate_eda()
         logger.detail("EDA completed - visualizations saved")
         
         logger.step(6, 10, "Algorithm Selection")
@@ -591,9 +573,6 @@ def main(args):
         
         # Export converted graph
         logger.detail("Exporting original causal graph...")
-        from postprocess.export_causal_graphs import export_causal_graphs
-        logger.detail("Exporting edge lists and matrix formats...")
-        export_causal_graphs(global_state)
         export_converted_graph(global_state)
         
         save_checkpoint(global_state, 1, args)
